@@ -1,0 +1,36 @@
+.o-feature-block {
+  &__wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__column {
+    width: 50%;
+
+    @media (max-width: $small-tablet) {
+      width: 100%;
+    }
+  }
+
+  &__inner {
+    &--text {
+      padding-left: 32px;
+
+      @media (max-width: $small-tablet) {
+        padding: 0;
+      }
+
+    }
+  }
+
+  &__image {
+    padding-bottom: 80%;
+    background-color: #dddddd;
+
+    @media (max-width: $small-tablet) {
+      padding-bottom: 64%;
+    }
+  }
+}

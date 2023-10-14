@@ -1,0 +1,21 @@
+.sidebar.main-content {
+  &__left {
+    padding-top: calc(#{$gutter-m} + 60px);
+    width: 100%;
+    border-right: 1px solid $grey-100;
+    background-color: $light-100;
+
+    @media (max-width: $tablet) {
+      max-width: 300px;
+    }
+
+    @media (max-width: $small-tablet) {
+      display: none !important;
+    }
+  }
+}
+
+#SidebarTop {
+  position: sticky;
+  top: calc(60px + 24px);
+}

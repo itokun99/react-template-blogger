@@ -1,0 +1,1 @@
+export type VariantType = 'default'| 'success'| 'info'| 'warning'| 'secondary'| 'primary';
