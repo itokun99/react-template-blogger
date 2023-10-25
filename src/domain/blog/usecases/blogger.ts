@@ -2,24 +2,30 @@ import { appStoreRepo } from '../../app/repositories';
 import { bloggerRepository } from '../repositories';
 
 async function getInfo() {
-  const state = appStoreRepo.configStore.getState();
-  if (!state?.appConfig?.google?.apiKey) {
-    throw new Error('invalid google api key ');
+  const { blogId, apiKey } = appStoreRepo.getBloggerCredential();
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
   }
 
-  if (!state?.appConfig?.blogger?.blogId) {
-    throw new Error('invalid blog id ');
+  const res = await bloggerRepository.blogInfo(blogId, apiKey);
+  return res.data;
+}
+
+async function getFeaturedPosts() {
+  const { blogId, apiKey } = appStoreRepo.getBloggerCredential();
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
   }
 
-  const blogInfo = await bloggerRepository.blogInfo(
-    state?.appConfig?.blogger?.blogId,
-    state.appConfig?.google?.apiKey
-  );
-  return blogInfo.data;
+  const res = await bloggerRepository.getPosts(blogId, apiKey, {
+    maxResults: 1
+  });
+  return res.data;
 }
 
 const bloggerUsecase = {
-  getInfo
+  getInfo,
+  getFeaturedPosts
 };
 
 export default bloggerUsecase;

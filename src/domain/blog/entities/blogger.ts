@@ -1,6 +1,6 @@
-export interface PostsRequestParams {
+export interface BloggerRequestParams {
   q?: string;
-  key: string;
+  key?: string;
   maxResults?: string | number;
   fetchImages?: boolean;
   pageToken?: string;
@@ -10,8 +10,9 @@ export interface PostsRequestParams {
   endDate?: string;
   sortOption?: string | 'descending' | 'ascending';
   startDate?: string;
-  status?: string | 'draft' | 'live' | 'scheduled';
+  status?: string | 'draft' | 'live' | 'scheduled' | 'imported';
   view?: string | 'ADMIN' | 'AUTHOR' | 'READER';
+  maxComments?: string | number;
 }
 
 export interface BlogInfo {

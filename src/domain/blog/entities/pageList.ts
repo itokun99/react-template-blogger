@@ -1,7 +1,7 @@
-export interface PostList {
+export interface Pages {
   kind: string;
-  nextPageToken: string;
   items: Item[];
+  nextPageToken: string;
   etag: string;
 }
 
@@ -15,10 +15,7 @@ interface Item {
   selfLink: string;
   title: string;
   content: string;
-  images: Image[];
   author: Author;
-  replies: Replies;
-  labels: string[];
   etag: string;
 }
 
@@ -26,22 +23,13 @@ interface Blog {
   id: string;
 }
 
-interface Image {
-  url: string;
-}
-
 interface Author {
   id: string;
   displayName: string;
   url: string;
-  image: Image2;
+  image: Image;
 }
 
-interface Image2 {
+interface Image {
   url: string;
-}
-
-interface Replies {
-  totalItems: string;
-  selfLink: string;
 }

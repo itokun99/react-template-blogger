@@ -14,8 +14,22 @@ const configStore = createStore<AppConfigState>(set => ({
 
 const useConfigStore = createBoundedUseStore(configStore);
 
+function getBloggerCredential() {
+  const state = configStore.getState();
+  const blogId = state.appConfig?.blogger?.blogId;
+  const apiKey = state.appConfig?.google?.apiKey;
+  const blogUrl = state.appConfig?.blogger?.blogUrl;
+
+  return {
+    blogId,
+    apiKey,
+    blogUrl
+  };
+}
+
 const appStoreRepo = {
   configStore: configStore,
+  getBloggerCredential,
   useConfigStore
 };
 
