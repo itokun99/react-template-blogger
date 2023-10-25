@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import cx from 'classnames';
 import { useInView } from 'react-intersection-observer';
 import { APP_CONFIG } from '@core';
+import { useBlog } from '@hooks';
 
 interface ImageProps {
   src?: string;
@@ -20,6 +21,8 @@ function Component({
   imageClassName,
   loading
 }: ImageProps) {
+  const { config } = useBlog();
+
   const { ref, inView } = useInView({
     triggerOnce: false,
     delay: 500,
@@ -41,7 +44,10 @@ function Component({
     [imageClassName]
   );
 
-  const imgSrc = useMemo(() => src || APP_CONFIG.app.defaultImage, [src]);
+  const imgSrc = useMemo(
+    () => src || config.data?.app?.defaultImage,
+    [src, config.data?.app?.defaultImage]
+  );
 
   return (
     <div ref={ref} className={wrapperClasses}>
