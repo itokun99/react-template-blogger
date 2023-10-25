@@ -1,9 +1,4 @@
-import {
-  APP_CONFIG,
-  BLOGGER_API_ENDPOINTS,
-  httpClient,
-  appConfigStore
-} from '@core';
+import { BLOGGER_API_ENDPOINTS, httpClient } from '@core';
 import { BlogInfo } from '../entities/blogger';
 
 function blogInfo(blogId: string, apiKey: string) {
@@ -14,8 +9,18 @@ function blogInfo(blogId: string, apiKey: string) {
   });
 }
 
+function getPosts(blogId: string, apiKey: string, params: any) {
+  return httpClient.get(BLOGGER_API_ENDPOINTS.posts(blogId), {
+    params: {
+      ...params,
+      key: apiKey
+    }
+  });
+}
+
 const bloggerRepository = {
-  blogInfo
+  blogInfo,
+  getPosts
 };
 
 export default bloggerRepository;

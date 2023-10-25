@@ -11,8 +11,8 @@ interface FeaturedCardProps {
 
 function Component({ title, description, image, url }: FeaturedCardProps) {
   return (
-    <div className="c-featured-post bg-white border border-slate-300 relative overflow-hidden">
-      <div className="flex">
+    <div className="c-featured-post sm:bg-white sm:border sm:border-slate-300 relative overflow-hidden">
+      <div className="flex sm:p-6">
         <Thumbnail title={title} alt={title} image={image} url={url} />
         <Content title={title} description={description} url={url} />
       </div>

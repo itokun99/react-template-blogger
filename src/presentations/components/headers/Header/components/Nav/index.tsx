@@ -9,7 +9,7 @@ function Component() {
     [config.data?.menu?.header]
   );
   return (
-    <ul className="c-header-nav flex gap-8">
+    <ul className="c-header-nav md:flex hidden gap-8">
       {menus.map(menu => (
         <li key={`nav-${menu.id}`} className="flex items-center">
           <NavLink className="text-slate-700" to={menu.url} title={menu.title}>

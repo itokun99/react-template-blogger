@@ -12,7 +12,7 @@ interface ThumbnailProps {
 
 function Component({ image, alt, title, url }: ThumbnailProps) {
   const classes = useMemo(
-    () => cx('c-featured-card-thumbnail', 'basis-6/12  p-6'),
+    () => cx('c-featured-card-thumbnail', 'basis-6/12 md:block hidden pr-6'),
     []
   );
 

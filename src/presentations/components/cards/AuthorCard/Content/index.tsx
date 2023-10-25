@@ -7,9 +7,9 @@ interface ContentProps {
 
 function Component({ title, subtitle }: ContentProps) {
   return (
-    <div className="">
+    <div className="flex flex-col justify-center">
       <h4 className="font-bold text-sm text-slate-700">{title}</h4>
-      <p className="text-xs">{subtitle}</p>
+      {subtitle && <p className="text-xs">{subtitle}</p>}
     </div>
   );
 }

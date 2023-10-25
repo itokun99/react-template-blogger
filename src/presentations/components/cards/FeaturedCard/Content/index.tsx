@@ -11,9 +11,9 @@ interface ContentProps {
 
 function Component({ title, description, url }: ContentProps) {
   return (
-    <div className="flex-1 pt-6 pr-6 pb-6 flex flex-col">
+    <div className="flex-1 flex flex-col">
       {/* Tags */}
-      <div className="pt-2">
+      <div className="pt-0 md:pt-2">
         {[
           { title: 'Tutorial', url: '/tutorial' },
           { title: 'CSS', url: '/css' }
@@ -22,7 +22,7 @@ function Component({ title, description, url }: ContentProps) {
         ))}
       </div>
       {/* title */}
-      <div className="pb-2">
+      <div className="pb-0 md:pb-2">
         <Link to={url || ''}>
           <h2 className="font-bold text-xl text-slate-700">{title}</h2>
         </Link>
@@ -39,8 +39,8 @@ function Component({ title, description, url }: ContentProps) {
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between">
-        <div>
+      <div className="flex justify-between flex-wrap sm:flex-nowrap">
+        <div className="w-full sm:w-auto mb-6 sm:mb-0">
           <AuthorCard />
         </div>
         <Button

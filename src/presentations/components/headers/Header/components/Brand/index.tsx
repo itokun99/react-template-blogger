@@ -14,7 +14,7 @@ function Brand() {
             loading={isLoading}
             src={config.data?.app?.logo}
             alt={data?.name}
-            className="rounded-full w-10 mr-4 h-10 overflow-hidden"
+            className="rounded-full w-10 mr-2 h-10 overflow-hidden"
           />
           {isLoading ? (
             <div className="bg-slate-300 w-24 h-6 rounded-full"></div>
