@@ -39,6 +39,12 @@
       ],
       "@general-types": [
         "./src/types"
+      ],
+      "@domain": [
+        "./src/domain"
+      ],
+      "@fake": [
+        "./src/fake"
       ]
     },
     /* Bundler mode */

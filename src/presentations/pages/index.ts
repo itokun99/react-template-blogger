@@ -1,5 +1,6 @@
-import Root from "./Root";
+import { lazy } from 'react';
 
-export {
-  Root
-}
+const Root = lazy(() => import('./Root'));
+const Homepage = lazy(() => import('./Homepage'));
+
+export { Root, Homepage };

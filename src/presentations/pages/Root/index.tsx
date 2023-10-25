@@ -1,15 +1,17 @@
-import type { PropsWithChildren } from 'react';
-import { Header } from '@components';
+import { Outlet } from 'react-router-dom';
+import { Header, Container } from '@components';
+import { useBlog } from '@hooks';
 
-interface RootProps extends PropsWithChildren { }
-
-const Root: React.FC<RootProps> = ({ children }) => {
+function Root() {
   return (
     <>
       <Header />
-      {children}
+      <div className="pt-20">
+        <Container>
+          <Outlet />
+        </Container>
+      </div>
     </>
-  )
+  );
 }
-
 export default Root;

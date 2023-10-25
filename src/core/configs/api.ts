@@ -1,14 +1,18 @@
 import { APP_CONFIG } from './app';
 
 export const BLOGGER_API_ENDPOINTS = {
-  blog: `${APP_CONFIG.blogger.apiUrl}/blogs/${APP_CONFIG.blogger.blogId}`,
-  posts: `${APP_CONFIG.blogger.apiUrl}/blogs/${APP_CONFIG.blogger.blogId}/posts`,
-  searchPosts: `${APP_CONFIG.blogger.apiUrl}/blogs/${APP_CONFIG.blogger.blogId}/posts/search`,
-  pages: `${APP_CONFIG.blogger.apiUrl}/blogs/${APP_CONFIG.blogger.blogId}/pages`,
-  users: `${APP_CONFIG.blogger.apiUrl}/blogs/${APP_CONFIG.blogger.blogId}/users`
-}
+  blog: (blogId: string) => `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}`,
+  posts: (blogId: string) =>
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/posts`,
+  searchPosts: (blogId: string) =>
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/posts/search`,
+  pages: (blogId: string) =>
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/pages`,
+  users: (blogId: string) =>
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/users`
+};
 
 export const BLOGGER_FEED_ENDPOINTS = {
-  postSummaries: `${APP_CONFIG.blogger.blogUrl}/feeds/posts/summary`,
-  postDefault: `${APP_CONFIG.blogger.blogUrl}/feeds/posts/default`
-}
+  postSummaries: (blogUrl: string) => `${blogUrl}/feeds/posts/summary`,
+  postDefault: (blogUrl: string) => `${blogUrl}/feeds/posts/default`
+};
