@@ -8,9 +8,10 @@ interface ThumbnailProps {
   title?: string;
   alt?: string;
   url?: string;
+  loading?: boolean;
 }
 
-function Component({ image, alt, title, url }: ThumbnailProps) {
+function Component({ image, alt, title, url, loading }: ThumbnailProps) {
   const classes = useMemo(
     () => cx('c-featured-card-thumbnail', 'basis-6/12 md:block hidden pr-6'),
     []
@@ -19,7 +20,13 @@ function Component({ image, alt, title, url }: ThumbnailProps) {
   if (url && url.includes('http')) {
     return (
       <a href={url} title={title} className={classes}>
-        <Image src={image} alt={alt} title={title} className="w-full h-full" />
+        <Image
+          loading={loading}
+          src={image}
+          alt={alt}
+          title={title}
+          className="w-full h-full"
+        />
       </a>
     );
   }
@@ -27,14 +34,26 @@ function Component({ image, alt, title, url }: ThumbnailProps) {
   if (url) {
     return (
       <Link className={classes} to={url} title={title}>
-        <Image src={image} alt={alt} title={title} className="w-full h-full" />
+        <Image
+          loading={loading}
+          src={image}
+          alt={alt}
+          title={title}
+          className="w-full h-full"
+        />
       </Link>
     );
   }
 
   return (
     <div className={classes}>
-      <Image src={image} alt={alt} title={title} className="w-full h-full" />
+      <Image
+        loading={loading}
+        src={image}
+        alt={alt}
+        title={title}
+        className="w-full h-full"
+      />
     </div>
   );
 }

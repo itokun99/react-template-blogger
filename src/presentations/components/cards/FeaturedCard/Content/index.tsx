@@ -2,22 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import { Button, AuthorCard, Hashtag } from '@components';
-
+import { PostLabel } from '@general-types';
 interface ContentProps {
   title?: string;
   description?: string;
   url?: string;
+  loading?: boolean;
+  labels?: PostLabel[];
+  date?: string;
 }
 
-function Component({ title, description, url }: ContentProps) {
+function Component({
+  title,
+  description,
+  url,
+  labels = [],
+  date
+}: ContentProps) {
   return (
     <div className="flex-1 flex flex-col">
       {/* Tags */}
       <div className="pt-0 md:pt-2">
-        {[
-          { title: 'Tutorial', url: '/tutorial' },
-          { title: 'CSS', url: '/css' }
-        ].map(v => (
+        {labels.map(v => (
           <Hashtag key={v.title} title={v.title} url={v.url} />
         ))}
       </div>
@@ -30,7 +36,9 @@ function Component({ title, description, url }: ContentProps) {
 
       {/* Date */}
       <div className="pb-4">
-        <p className="text-xs text-slate-700">Published on Oct 23, 2023</p>
+        <p className="text-xs text-slate-700">
+          {date && `Published on ${date}`}
+        </p>
       </div>
 
       {/* Description */}

@@ -18,7 +18,10 @@ async function getFeaturedPosts() {
   }
 
   const res = await bloggerRepository.getPosts(blogId, apiKey, {
-    maxResults: 1
+    maxResults: 10,
+    fetchBodies: true,
+    fetchImages: true,
+    orderBy: 'updated'
   });
   return res.data;
 }

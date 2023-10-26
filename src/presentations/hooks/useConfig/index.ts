@@ -7,7 +7,16 @@ export default function useConfig() {
     queryFn: appConfigUsecase.getConfig
   });
 
+  const apiKey = query.data?.google?.apiKey;
+  const blogId = query.data?.blogger?.blogId;
+  const blogUrl = query.data?.blogger?.blogUrl;
+  const isEnableQueries = Boolean(blogId) && Boolean(apiKey);
+
   return {
-    ...query
+    ...query,
+    apiKey,
+    blogId,
+    blogUrl,
+    isEnableQueries
   };
 }

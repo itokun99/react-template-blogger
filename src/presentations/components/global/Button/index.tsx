@@ -52,11 +52,19 @@ function Component({
   }
 
   if (url?.includes('http')) {
-    return <a href={url}>{renderContent()}</a>;
+    return (
+      <a href={url} className={buttonClasses}>
+        {renderContent()}
+      </a>
+    );
   }
 
   if (url) {
-    return <Link to={url}>{renderContent()}</Link>;
+    return (
+      <Link to={url} className={buttonClasses}>
+        {renderContent()}
+      </Link>
+    );
   }
 
   return (

@@ -1,17 +1,47 @@
 import React from 'react';
 import { FeaturedCard } from '../../cards';
+import { Container } from '@components';
+import { useFeaturedPosts } from '@hooks';
+import {
+  createPostLabel,
+  createPostUrl,
+  removeHtmlTags,
+  formatDate
+} from '@utils';
 
 function Component() {
+  const featuredPosts = useFeaturedPosts();
+
+  console.log('featuredPosts ==>', featuredPosts.items);
+
+  const renderContent = () => {
+    if (featuredPosts.isLoading) {
+      return <FeaturedCard loading={featuredPosts.isLoading} />;
+    }
+
+    return (
+      <>
+        {featuredPosts.items.map(item => (
+          <FeaturedCard
+            key={`featured-post-${item.id}`}
+            loading={featuredPosts.isLoading}
+            image={item.images?.[0].url}
+            title={item.title}
+            labels={createPostLabel(item.labels, 3)}
+            url={createPostUrl(item.url)}
+            description={removeHtmlTags(item.content, 250, '[...]')}
+            date={formatDate(item.published, 'MMM DD, YYYY')}
+          />
+        ))}
+      </>
+    );
+  };
+
   return (
-    <div className="c-featured-post">
-      <div className="c-featured-post-top">
-        <FeaturedCard
-          image="https://1.bp.blogspot.com/-Lq1oy8gWQSc/Xl-A2TpKjII/AAAAAAAAAXk/ZhzCs2bNLzYPqd84npi3BNif5wAkbf6igCLcBGAsYHQ/w485-h303-p-k-no-nu/Wild%2BSwimming%2BConscious%2BLiving%2BAdventures.png"
-          title="The Good Landscape for Your Backyard and Home suitable"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc egestas eget nulla a lobortis. Duis tincidunt in dolor ornare condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc egestas eget nulla a lobortis. Duis tincidunt in dolor ornare condimentum."
-        />
-      </div>
-    </div>
+    <Container className="px-0 sm:px-6">
+      <div className="px-6 sm:px-0">{renderContent()}</div>
+      <div className="pb-6 mb-6 border-b border-slate-300"></div>
+    </Container>
   );
 }
 

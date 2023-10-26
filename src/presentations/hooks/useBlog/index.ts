@@ -5,15 +5,9 @@ import { useConfig } from '@hooks';
 export default function useBlog() {
   const config = useConfig();
   const query = useQuery({
-    queryKey: [
-      'blog',
-      config.data?.blogger?.blogId,
-      config.data?.google?.apiKey
-    ],
+    queryKey: ['blog', config.blogId, config.apiKey],
     queryFn: bloggerUsecase.getInfo,
-    enabled:
-      Boolean(config.data?.blogger?.blogId) &&
-      Boolean(config.data?.google?.apiKey)
+    enabled: config.isEnableQueries
   });
 
   return {

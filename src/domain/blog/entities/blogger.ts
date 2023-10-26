@@ -6,12 +6,12 @@ export interface BloggerRequestParams {
   pageToken?: string;
   fetchBodies?: boolean;
   labels?: string;
-  orderBy?: string | 'published' | 'updated';
+  orderBy?: 'published' | 'updated';
   endDate?: string;
-  sortOption?: string | 'descending' | 'ascending';
+  sortOption?: 'descending' | 'ascending';
   startDate?: string;
-  status?: string | 'draft' | 'live' | 'scheduled' | 'imported';
-  view?: string | 'ADMIN' | 'AUTHOR' | 'READER';
+  status?: 'draft' | 'live' | 'scheduled' | 'imported';
+  view?: 'ADMIN' | 'AUTHOR' | 'READER';
   maxComments?: string | number;
 }
 
