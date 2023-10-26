@@ -19,11 +19,13 @@ function getBloggerCredential() {
   const blogId = state.appConfig?.blogger?.blogId;
   const apiKey = state.appConfig?.google?.apiKey;
   const blogUrl = state.appConfig?.blogger?.blogUrl;
+  const authors = state.appConfig?.author || [];
 
   return {
     blogId,
     apiKey,
-    blogUrl
+    blogUrl,
+    authors
   };
 }
 

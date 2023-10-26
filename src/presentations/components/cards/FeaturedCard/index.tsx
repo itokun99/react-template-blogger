@@ -2,6 +2,7 @@ import React from 'react';
 import Thumbnail from './Thumbnail';
 import Content from './Content';
 import { PostLabel } from '@general-types';
+import { AuthorCardProps } from '../AuthorCard';
 
 interface FeaturedCardProps {
   title?: string;
@@ -11,6 +12,7 @@ interface FeaturedCardProps {
   loading?: boolean;
   labels?: PostLabel[];
   date?: string;
+  author?: AuthorCardProps;
 }
 
 function Component({
@@ -20,8 +22,11 @@ function Component({
   url,
   loading,
   labels,
-  date
+  date,
+  author
 }: FeaturedCardProps) {
+  console.log('author', author);
+
   return (
     <div className="c-featured-post sm:bg-white sm:border sm:border-slate-300 relative overflow-hidden">
       <div className="flex sm:p-6">
@@ -39,6 +44,7 @@ function Component({
           loading={loading}
           labels={labels}
           date={date}
+          author={author}
         />
       </div>
     </div>

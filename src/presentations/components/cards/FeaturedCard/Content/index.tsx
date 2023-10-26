@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import { Button, AuthorCard, Hashtag } from '@components';
 import { PostLabel } from '@general-types';
+import { AuthorCardProps } from '../../AuthorCard';
 interface ContentProps {
   title?: string;
   description?: string;
@@ -10,6 +11,7 @@ interface ContentProps {
   loading?: boolean;
   labels?: PostLabel[];
   date?: string;
+  author?: AuthorCardProps;
 }
 
 function Component({
@@ -17,7 +19,8 @@ function Component({
   description,
   url,
   labels = [],
-  date
+  date,
+  author
 }: ContentProps) {
   return (
     <div className="flex-1 flex flex-col">
@@ -49,7 +52,7 @@ function Component({
       {/* Footer */}
       <div className="flex justify-between flex-wrap sm:flex-nowrap">
         <div className="w-full sm:w-auto mb-6 sm:mb-0">
-          <AuthorCard />
+          <AuthorCard {...author} />
         </div>
         <Button
           url={url}

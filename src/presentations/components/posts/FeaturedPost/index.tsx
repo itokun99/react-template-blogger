@@ -31,6 +31,14 @@ function Component() {
             url={createPostUrl(item.url)}
             description={removeHtmlTags(item.content, 250, '[...]')}
             date={formatDate(item.published, 'MMM DD, YYYY')}
+            author={{
+              title: item.author?.detail?.name || item.author?.displayName,
+              subtitle:
+                item.author?.detail?.title ||
+                item.author.detail?.nickname ||
+                item.author.detail?.username,
+              image: item.author?.detail?.profilePic || item.author?.image?.url
+            }}
           />
         ))}
       </>

@@ -1,3 +1,5 @@
+import { AppConfig } from '../../app/entities';
+
 export interface Posts {
   kind: string;
   nextPageToken: string;
@@ -35,6 +37,7 @@ interface Author {
   displayName: string;
   url: string;
   image: Image2;
+  detail: AppConfig['author'][0];
 }
 
 interface Image2 {
