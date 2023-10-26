@@ -25,6 +25,8 @@ async function getFeaturedPosts() {
     orderBy: 'updated'
   });
 
+  console.log('bloggerUseCase / getFeaturedPosts ==>', res);
+
   if (res.data) {
     const tempData = { ...res.data };
 

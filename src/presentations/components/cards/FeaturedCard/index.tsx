@@ -25,8 +25,6 @@ function Component({
   date,
   author
 }: FeaturedCardProps) {
-  console.log('author', author);
-
   return (
     <div className="c-featured-post sm:bg-white sm:border sm:border-slate-300 relative overflow-hidden">
       <div className="flex sm:p-6">

@@ -12,8 +12,6 @@ import {
 function Component() {
   const featuredPosts = useFeaturedPosts();
 
-  console.log('featuredPosts ==>', featuredPosts.items);
-
   const renderContent = () => {
     if (featuredPosts.isLoading) {
       return <FeaturedCard loading={featuredPosts.isLoading} />;
