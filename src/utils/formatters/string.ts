@@ -69,7 +69,7 @@ export const resizeImage = (
   height = 400,
   crop = true
 ) => {
-  const target = /\/s[0-9]+\-c/g;
+  const target = /\/s[0-9]+\c/g;
   const result = `/w${width}-h${height}-${crop ? 'c' : ''}`;
   return image.replace(target, result);
 };

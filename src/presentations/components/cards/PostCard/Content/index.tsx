@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowRight } from 'react-icons/fi';
-import { Button, AuthorCard, Hashtag } from '@components';
+import { AuthorCard } from '@components';
 import { PostLabel } from '@general-types';
 import { AuthorCardProps } from '../../AuthorCard';
 import Skeleton from './Skeleton';

@@ -1,5 +1,3 @@
-const w = window as any;
-
 export const APP_CONFIG = {
   app: {
     name: 'react-blogger-template',

@@ -4,8 +4,8 @@ import { removeDomainAndSubdomain, removeHtmlTags } from '@utils';
 export function transformPostLabel(post: Posts['items'][0]) {
   if (post.labels && post.labels.length > 0) {
     post.labels = post.labels.map(value => ({
-      title: value as any,
-      url: `/search/label/${encodeURIComponent(value as any)}`
+      title: value as unknown as string,
+      url: `/search/label/${encodeURIComponent(value as unknown as string)}`
     }));
   }
 

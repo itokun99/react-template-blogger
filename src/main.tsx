@@ -12,7 +12,7 @@ const dataConfig = rootEl?.getAttribute('data-config');
 const dataConfigUrl = rootEl?.getAttribute('data-config-url');
 
 if (rootEl && dataConfig && dataConfigUrl) {
-  const w = window as any;
+  const w = window as unknown as { __REACT_TEMPLATE_BLOGGER__: object };
   w['__REACT_TEMPLATE_BLOGGER__'] = {
     configId: dataConfig,
     configUrl: dataConfigUrl

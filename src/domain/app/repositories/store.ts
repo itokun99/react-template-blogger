@@ -4,12 +4,12 @@ import { AppConfig } from '../entities';
 
 interface AppConfigState {
   appConfig: AppConfig | null | undefined;
-  setAppConfig: (appConfig: any) => void;
+  setAppConfig: (appConfig: AppConfig) => void;
 }
 
 const configStore = createStore<AppConfigState>(set => ({
   appConfig: null,
-  setAppConfig: (config: any) => set({ appConfig: config })
+  setAppConfig: config => set({ appConfig: config })
 }));
 
 const useConfigStore = createBoundedUseStore(configStore);
