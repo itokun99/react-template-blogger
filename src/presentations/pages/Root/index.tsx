@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Header, Container } from '@components';
-import { useBlog } from '@hooks';
+import { Header, Footer } from '@components';
 
 function Root() {
   return (
@@ -9,6 +8,7 @@ function Root() {
       <div className="pt-20">
         <Outlet />
       </div>
+      <Footer />
     </>
   );
 }

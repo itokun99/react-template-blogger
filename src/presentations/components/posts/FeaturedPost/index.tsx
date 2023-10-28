@@ -34,7 +34,7 @@ function Component() {
     <Container className="px-0 sm:px-6">
       <SectionTitle title="Featured Post" />
       <div className="px-6 sm:px-0">{renderContent()}</div>
-      <div className="pb-6 mb-6 border-b border-slate-300 w-full"></div>
+      <div className="mb-6 w-full border-b border-slate-300 pb-6"></div>
     </Container>
   );
 }

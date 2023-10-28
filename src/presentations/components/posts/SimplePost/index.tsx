@@ -1,37 +1,34 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Container, SectionTitle, PostCard } from '@components';
-import { useLatestPosts, useMediaQuery } from '@hooks';
-import { formatDate, createAuthorDataFromPost, removeHtmlTags } from '@utils';
+import { Container, SectionTitle, SimpleCard } from '@components';
+import { useLatestPosts } from '@hooks';
+import { formatDate, createAuthorDataFromPost } from '@utils';
 
 function Component() {
   const posts = useLatestPosts();
 
-  const isSM = useMediaQuery(`(min-width: 640px)`);
-
   const renderContent = () => {
     if (posts.isLoading) {
-      return <PostCard loading={posts.isLoading} />;
+      return <SimpleCard loading={posts.isLoading} />;
     }
 
     return (
-      <div className="block flex-nowrap sm:overflow-x-auto sm:whitespace-nowrap sm:pb-8">
+      <div className="block sm:pb-8">
         {posts.items.map((item, idx) => (
           <div
             className={clsx(
-              'inline-block w-full border-b p-6 sm:w-72 sm:border-none sm:p-0',
-              {
-                'sm:mr-6': idx !== posts.items.length - 1
-              }
+              'mb-6 inline-block w-full border-b border-slate-300 px-6 pb-6 sm:mb-0 sm:border-none sm:px-0',
+              idx === posts.items.length - 1 ? '!mb-0 !border-b-0 sm:!pb-0' : ''
             )}
           >
-            <PostCard
-              key={`featured-post-${item.id}`}
+            <SimpleCard
+              key={`simple-post-${item.id}`}
               loading={posts.isLoading}
               image={item.images?.[0].url}
-              title={isSM ? removeHtmlTags(item.title, 45, '...') : item.title}
+              title={item.title}
               labels={item.labels}
               url={item.to}
+              description={item.summary}
               date={formatDate(item.published, 'MMM DD, YYYY')}
               author={createAuthorDataFromPost(item.author)}
             />
@@ -45,7 +42,6 @@ function Component() {
     <Container className="px-0 sm:px-6">
       <SectionTitle title="Latest" />
       <div className="sm:px-0">{renderContent()}</div>
-      <div className="mb-6 w-full border-b border-slate-300"></div>
     </Container>
   );
 }
