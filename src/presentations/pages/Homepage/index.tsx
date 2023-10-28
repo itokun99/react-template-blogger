@@ -1,10 +1,14 @@
-import { FeaturedPost, LabeledPost } from '@components';
+import { FeaturedPost, LabeledPost, SimplePost } from '@components';
 
 function Homepage() {
   return (
     <div>
       <FeaturedPost />
-      <LabeledPost title="Javascript" label="Javascript" />
+      <LabeledPost
+        title="React & Javascript"
+        label={['React JS', 'Javascript']}
+      />
+      <SimplePost />
     </div>
   );
 }

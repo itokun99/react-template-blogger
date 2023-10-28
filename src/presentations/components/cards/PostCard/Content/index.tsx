@@ -15,14 +15,7 @@ interface ContentProps {
   author?: AuthorCardProps;
 }
 
-function Component({
-  title,
-  description,
-  url,
-  date,
-  author,
-  loading
-}: ContentProps) {
+function Component({ title, url, date, author, loading }: ContentProps) {
   if (loading) return <Skeleton />;
 
   return (
@@ -30,7 +23,7 @@ function Component({
       {/* title */}
       <div className="pb-0 md:pb-2">
         <Link to={url || ''} className="inline-block">
-          <h2 className="text-md w-full whitespace-normal font-bold text-slate-700">
+          <h2 className="w-full whitespace-normal text-lg font-bold text-slate-700 sm:text-base">
             {title}
           </h2>
         </Link>
@@ -45,7 +38,7 @@ function Component({
 
       {/* Footer */}
       <div className="flex flex-wrap justify-between sm:flex-nowrap">
-        <div className="mb-6 w-full sm:mb-0 sm:w-auto">
+        <div className="w-full sm:mb-0 sm:w-auto">
           <AuthorCard {...author} />
         </div>
       </div>

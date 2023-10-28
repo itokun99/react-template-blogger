@@ -29,7 +29,7 @@ function Component({
   const wrapperClasses = useMemo(
     () =>
       clsx(
-        'c-post-card relative overflow-hidden p-6 sm:border sm:border-slate-300 sm:bg-white',
+        'c-post-card relative overflow-hidden border-slate-300 bg-white p-0 sm:border sm:p-6',
         wrapperClassName
       ),
     [wrapperClassName]

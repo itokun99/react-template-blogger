@@ -23,7 +23,7 @@ function Component({
   const { config } = useBlog();
 
   const { ref, inView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     delay: 500,
     initialInView: false,
     threshold: [0, 0.25, 0.5, 0.75, 1]

@@ -59,10 +59,31 @@ async function getPostsByLabel(label: string | string[]) {
   return res.data;
 }
 
+async function getLatestPosts() {
+  const { blogId, apiKey, authors } = appStoreUsecase.getBloggerCredential();
+
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
+  }
+
+  const res = await bloggerRepository.getPosts(blogId, apiKey, {
+    maxResults: 10,
+    fetchBodies: true,
+    fetchImages: true,
+    orderBy: 'published'
+  });
+
+  res.data = transformPost(res.data, authors);
+
+  console.log('bloggerUseCase / getPostsByLabel ==>', res);
+  return res.data;
+}
+
 const bloggerUsecase = {
   getInfo,
   getFeaturedPosts,
-  getPostsByLabel
+  getPostsByLabel,
+  getLatestPosts
 };
 
 export default bloggerUsecase;

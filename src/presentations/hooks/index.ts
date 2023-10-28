@@ -3,11 +3,15 @@ import useConfig from './useConfig';
 import useConfigStore from './useConfigStore';
 import useFeaturedPosts from './useFeaturedPosts';
 import useLabeledPosts from './useLabeledPosts';
+import useLatestPosts from './useLatestPosts';
+import { useMediaQuery } from './useMediaQuery';
 
 export {
   useBlog,
   useConfig,
   useConfigStore,
   useFeaturedPosts,
-  useLabeledPosts
+  useLabeledPosts,
+  useLatestPosts,
+  useMediaQuery
 };
