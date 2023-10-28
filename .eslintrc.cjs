@@ -9,10 +9,19 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'unused-imports', 'prettier'],
+  plugins: [
+    'react-refresh',
+    'unused-imports',
+    'prettier',
+    '@typescript-eslint',
+    'react/jsx-uses-react',
+    'react/jsx-uses-vars'
+  ],
   rules: {
-    'no-unused-vars': 'off', // or "@typescript-eslint/no-unused-vars": "off",
+    'react/jsx-uses-react': 'warn',
+    'react/jsx-uses-vars': 'warn',
     'unused-imports/no-unused-imports': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-vars': [
       'warn',
       {
