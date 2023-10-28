@@ -1,4 +1,5 @@
 import { AppConfig } from '../../app/entities';
+import { PostLabel } from '@general-types';
 
 export interface Posts {
   kind: string;
@@ -17,11 +18,13 @@ interface Item {
   selfLink: string;
   title: string;
   content: string;
+  summary: string;
   images: Image[];
   author: Author;
   replies: Replies;
-  labels: string[];
+  labels: PostLabel[];
   etag: string;
+  to: string;
 }
 
 interface Blog {

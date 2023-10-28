@@ -1,6 +1,6 @@
 import { appStoreRepo } from '../../app/repositories';
 import { bloggerRepository } from '../repositories';
-import {} from '@utils';
+import { transformPost } from '@utils';
 
 async function getInfo() {
   const { blogId, apiKey } = appStoreRepo.getBloggerCredential();
@@ -25,37 +25,9 @@ async function getFeaturedPosts() {
     orderBy: 'updated'
   });
 
+  res.data = transformPost(res.data, authors);
+
   console.log('bloggerUseCase / getFeaturedPosts ==>', res);
-
-  if (res.data) {
-    const tempData = { ...res.data };
-
-    // merge author data with custom author from config
-    if (authors.length > 0 && tempData.items.length > 0) {
-      tempData.items = tempData.items.map(item => {
-        // find the match data
-        const customAuthorData = authors.filter(
-          d => d.id === item.author.id
-        )[0];
-
-        // add when custom author defined as detail
-        if (customAuthorData) {
-          return {
-            ...item,
-            author: {
-              ...item.author,
-              detail: customAuthorData
-            }
-          };
-        }
-
-        return item;
-      });
-    }
-
-    res.data = tempData;
-  }
-
   return res.data;
 }
 

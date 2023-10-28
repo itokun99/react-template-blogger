@@ -20,7 +20,7 @@ function Component({ title, subtitle, image, loading }: AuthorCardProps) {
           loading={loading}
           className="w-9 h-9 overflow-hidden rounded-full"
         />
-        <Content title={title} subtitle={subtitle} />
+        <Content title={title} subtitle={subtitle} loading={loading} />
       </div>
     </div>
   );

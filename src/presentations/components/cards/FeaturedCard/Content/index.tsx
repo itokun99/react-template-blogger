@@ -4,6 +4,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { Button, AuthorCard, Hashtag } from '@components';
 import { PostLabel } from '@general-types';
 import { AuthorCardProps } from '../../AuthorCard';
+import Skeleton from './Skeleton';
 interface ContentProps {
   title?: string;
   description?: string;
@@ -20,8 +21,11 @@ function Component({
   url,
   labels = [],
   date,
-  author
+  author,
+  loading
 }: ContentProps) {
+  if (loading) return <Skeleton />;
+
   return (
     <div className="flex-1 flex flex-col">
       {/* Tags */}

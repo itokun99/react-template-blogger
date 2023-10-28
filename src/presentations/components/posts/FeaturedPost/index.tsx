@@ -2,12 +2,7 @@ import React from 'react';
 import { FeaturedCard } from '../../cards';
 import { Container } from '@components';
 import { useFeaturedPosts } from '@hooks';
-import {
-  createPostLabel,
-  createPostUrl,
-  removeHtmlTags,
-  formatDate
-} from '@utils';
+import { formatDate, createAuthorDataFromPost } from '@utils';
 
 function Component() {
   const featuredPosts = useFeaturedPosts();
@@ -25,18 +20,11 @@ function Component() {
             loading={featuredPosts.isLoading}
             image={item.images?.[0].url}
             title={item.title}
-            labels={createPostLabel(item.labels, 3)}
-            url={createPostUrl(item.url)}
-            description={removeHtmlTags(item.content, 250, '[...]')}
+            labels={item.labels}
+            url={item.to}
+            description={item.summary}
             date={formatDate(item.published, 'MMM DD, YYYY')}
-            author={{
-              title: item.author?.detail?.name || item.author?.displayName,
-              subtitle:
-                item.author?.detail?.title ||
-                item.author.detail?.nickname ||
-                item.author.detail?.username,
-              image: item.author?.detail?.profilePic || item.author?.image?.url
-            }}
+            author={createAuthorDataFromPost(item.author)}
           />
         ))}
       </>
