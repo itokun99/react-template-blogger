@@ -7,7 +7,7 @@ import Search from './components/Search';
 function Component() {
   return (
     <div className="c-header bg-white border border-b-slate-300 py-2 top-0 z-20 fixed w-full">
-      <Container className="c-header-container">
+      <Container className="c-header-container px-6">
         <div className="flex justify-between">
           <div>
             <Brand />

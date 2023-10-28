@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 
 interface ContainerProps extends PropsWithChildren {
   className?: string;
@@ -8,7 +8,7 @@ interface ContainerProps extends PropsWithChildren {
 
 function Container({ className, children }: ContainerProps) {
   return (
-    <div className={cx('container max-w-5xl mx-auto px-6', className)}>
+    <div className={clsx('container mx-auto max-w-5xl', className)}>
       {children}
     </div>
   );

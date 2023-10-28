@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import Skeleton from './components/Skeleton';
 
@@ -17,9 +17,9 @@ function Component({ title, url, className, loading }: HashtagProps) {
 
   const classes = useMemo(
     () =>
-      cx(
+      clsx(
         'c-hastag',
-        'inline-block text-xs text-slate-700 font-bold mr-2 mb-1',
+        'mb-1 mr-2 inline-block text-xs font-bold text-slate-700',
         className
       ),
     [className]

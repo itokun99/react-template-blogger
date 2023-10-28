@@ -13,7 +13,7 @@ interface ThumbnailProps {
 
 function Component({ image, alt, title, url, loading }: ThumbnailProps) {
   const classes = useMemo(
-    () => clsx('c-featured-card-thumbnail', 'hidden basis-6/12 pr-6 md:block'),
+    () => clsx('c-post-card-thumbnail', 'mb-3 hidden sm:block'),
     []
   );
 
@@ -25,7 +25,7 @@ function Component({ image, alt, title, url, loading }: ThumbnailProps) {
           src={image}
           alt={alt}
           title={title}
-          className="h-full w-full"
+          className="h-0 w-full pb-[62.5%]"
         />
       </a>
     );
@@ -39,7 +39,7 @@ function Component({ image, alt, title, url, loading }: ThumbnailProps) {
           src={image}
           alt={alt}
           title={title}
-          className="h-full w-full"
+          className="h-0 w-full pb-[62.5%]"
         />
       </Link>
     );
@@ -52,7 +52,7 @@ function Component({ image, alt, title, url, loading }: ThumbnailProps) {
         src={image}
         alt={alt}
         title={title}
-        className="h-full w-full"
+        className="h-0 w-full pb-[62.5%]"
       />
     </div>
   );

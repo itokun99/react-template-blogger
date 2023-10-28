@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
-import cx from 'classnames';
+import clsx from 'clsx';
 import { useInView } from 'react-intersection-observer';
-import { APP_CONFIG } from '@core';
 import { useBlog } from '@hooks';
 
 interface ImageProps {
@@ -31,14 +30,14 @@ function Component({
   });
 
   const wrapperClasses = useMemo(
-    () => cx('c-image', 'relative bg-slate-300', className),
+    () => clsx('c-image', 'relative bg-slate-300', className),
     [className]
   );
   const imageClasses = useMemo(
     () =>
-      cx(
+      clsx(
         'c-image-img',
-        'absolute w-full h-full max-w-full object-cover object-center',
+        'absolute h-full w-full max-w-full object-cover object-center',
         imageClassName
       ),
     [imageClassName]

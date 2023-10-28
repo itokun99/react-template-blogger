@@ -26,7 +26,7 @@ function Component({
   author
 }: FeaturedCardProps) {
   return (
-    <div className="c-featured-post sm:bg-white sm:border sm:border-slate-300 relative overflow-hidden">
+    <div className="c-featured-card relative overflow-hidden sm:border sm:border-slate-300 sm:bg-white">
       <div className="flex sm:p-6">
         <Thumbnail
           title={title}

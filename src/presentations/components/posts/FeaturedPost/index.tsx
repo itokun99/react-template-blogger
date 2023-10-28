@@ -1,6 +1,5 @@
 import React from 'react';
-import { FeaturedCard } from '../../cards';
-import { Container } from '@components';
+import { Container, SectionTitle, FeaturedCard } from '@components';
 import { useFeaturedPosts } from '@hooks';
 import { formatDate, createAuthorDataFromPost } from '@utils';
 
@@ -33,8 +32,9 @@ function Component() {
 
   return (
     <Container className="px-0 sm:px-6">
+      <SectionTitle title="Featured Post" />
       <div className="px-6 sm:px-0">{renderContent()}</div>
-      <div className="pb-6 mb-6 border-b border-slate-300"></div>
+      <div className="pb-6 mb-6 border-b border-slate-300 w-full"></div>
     </Container>
   );
 }

@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import cx from 'classnames';
+import clsx from 'clsx';
 import {
   ButtonRounded,
   ButtonType,
@@ -30,9 +30,9 @@ function Component({
   iconAlign = 'start'
 }: ButtonProps) {
   const buttonClasses = useMemo(() => {
-    return cx(
+    return clsx(
       'c-button',
-      'bg-sky-600 py-2 px-4 font-bold text-white text-sm',
+      'bg-sky-600 px-4 py-2 text-sm font-bold text-white',
       className
     );
   }, [className]);

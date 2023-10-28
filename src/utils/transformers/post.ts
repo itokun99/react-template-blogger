@@ -38,8 +38,9 @@ export function transformPost(data: Posts, authors: AppConfig['author']) {
       post = transformPostAuthor(post, authors);
       post = transformPostLabel(post);
       post.to = createPostUrl(post.url);
-      post.summary = removeHtmlTags(post.content, 250, '[...]');
-
+      if (post.content) {
+        post.summary = removeHtmlTags(post.content, 250, '[...]');
+      }
       return post;
     });
   }

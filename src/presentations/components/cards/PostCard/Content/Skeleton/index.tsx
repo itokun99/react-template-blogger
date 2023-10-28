@@ -1,10 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FiArrowRight } from 'react-icons/fi';
 import { AuthorCard, Hashtag } from '@components';
 
 function Component() {
   return (
     <div className="flex flex-1 flex-col">
       <div className="pt-0 md:pt-2">
+        {/* {[1, 2, 3].map(v => (
+          <div
+            key={v}
+            className="bg-slate-300 inline-block w-14 h-3 mr-2 mb-2 rounded-full"
+          />
+        ))} */}
         {[1, 2, 3].map(v => (
           <Hashtag key={v} loading />
         ))}
