@@ -6,7 +6,7 @@ import { formatDate, createAuthorDataFromPost, removeHtmlTags } from '@utils';
 
 interface LabeledPostProps {
   label: string | string[];
-  title?: string;
+  title?: string | React.ReactNode;
 }
 
 const loadingArr = [1, 2, 3, 4];
@@ -76,7 +76,7 @@ function Component({ label, title }: LabeledPostProps) {
 
   return (
     <Container className="px-0 sm:px-6">
-      <SectionTitle title={title || String(label)} />
+      <SectionTitle title={title || String(label) || 'Post by Category'} />
       <div className="sm:px-0">{renderContent()}</div>
       <div className="mb-6 w-full border-b border-slate-300"></div>
     </Container>

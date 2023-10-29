@@ -6,7 +6,11 @@ import { formatDate, createAuthorDataFromPost } from '@utils';
 
 const LOADING_ITEMS = [1, 2, 3, 4];
 
-function Component() {
+interface SimplePostProps {
+  title?: string | React.ReactNode;
+}
+
+function Component({ title }: SimplePostProps) {
   const posts = useLatestPosts();
 
   const renderItems = () => {
@@ -62,7 +66,7 @@ function Component() {
 
   return (
     <Container className="px-0 sm:px-6">
-      <SectionTitle title="Latest" />
+      <SectionTitle title={title || 'Recently Post'} />
       <div className="sm:px-0">{renderContent()}</div>
     </Container>
   );

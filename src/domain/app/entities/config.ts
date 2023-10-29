@@ -44,4 +44,19 @@ export type AppConfig = {
       username: string;
     }>;
   }>;
+  sectionConfig: {
+    homepage: {
+      top: Array<{
+        id: number;
+        title: string;
+        type: string;
+        show: boolean;
+        label?: string;
+      }>;
+      main: {
+        title: string;
+        show: boolean;
+      };
+    };
+  };
 };

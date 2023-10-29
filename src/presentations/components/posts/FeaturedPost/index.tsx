@@ -3,20 +3,24 @@ import { Container, SectionTitle, FeaturedCard } from '@components';
 import { useFeaturedPosts } from '@hooks';
 import { formatDate, createAuthorDataFromPost } from '@utils';
 
-function Component() {
-  const featuredPosts = useFeaturedPosts();
+interface FeaturedPostProps {
+  title?: string | React.ReactNode;
+}
+
+function Component({ title }: FeaturedPostProps) {
+  const posts = useFeaturedPosts();
 
   const renderContent = () => {
-    if (featuredPosts.isLoading) {
-      return <FeaturedCard loading={featuredPosts.isLoading} />;
+    if (posts.isLoading) {
+      return <FeaturedCard loading={posts.isLoading} />;
     }
 
     return (
       <>
-        {featuredPosts.items.map(item => (
+        {posts.items.map(item => (
           <FeaturedCard
             key={`featured-post-${item.id}`}
-            loading={featuredPosts.isLoading}
+            loading={posts.isLoading}
             image={item.images?.[0].url}
             title={item.title}
             labels={item.labels}
@@ -32,7 +36,7 @@ function Component() {
 
   return (
     <Container className="px-0 sm:px-6">
-      <SectionTitle title="Featured Post" />
+      <SectionTitle title={title || 'Featured Post'} />
       <div className="px-6 sm:px-0">{renderContent()}</div>
       <div className="mb-6 w-full border-b border-slate-300 pb-6"></div>
     </Container>
