@@ -1,5 +1,5 @@
 import { bloggerRepository, appStoreUsecase } from '@domain';
-import { transformPost } from '@utils';
+import { transformPost, createGroupAndCountLabels } from '@utils';
 
 async function getInfo() {
   const { blogId, apiKey } = appStoreUsecase.getBloggerCredential();
@@ -22,7 +22,8 @@ async function getFeaturedPosts() {
     maxResults: 1,
     fetchBodies: true,
     fetchImages: true,
-    orderBy: 'updated'
+    orderBy: 'updated',
+    fields: 'items,nextPageToken'
   });
 
   res.data = transformPost(res.data, authors);
@@ -75,15 +76,37 @@ async function getLatestPosts() {
 
   res.data = transformPost(res.data, authors);
 
-  console.log('bloggerUseCase / getPostsByLabel ==>', res);
+  console.log('bloggerUseCase / getLatestPosts ==>', res);
   return res.data;
+}
+
+async function getAllLabels() {
+  const { blogId, apiKey } = appStoreUsecase.getBloggerCredential();
+
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
+  }
+
+  const res = await bloggerRepository.getPosts(blogId, apiKey, {
+    maxResults: 500,
+    fetchBodies: true,
+    fetchImages: true,
+    orderBy: 'published',
+    fields: 'items.labels'
+  });
+
+  const labels =
+    res.data.items.length > 0 ? createGroupAndCountLabels(res.data.items) : [];
+  console.log('bloggerUseCase / getAllLabels ==>', labels);
+  return labels;
 }
 
 const bloggerUsecase = {
   getInfo,
   getFeaturedPosts,
   getPostsByLabel,
-  getLatestPosts
+  getLatestPosts,
+  getAllLabels
 };
 
 export default bloggerUsecase;

@@ -32,15 +32,51 @@ export function transformPostAuthor(
   return post;
 }
 
+// Function to group items by label and count occurrences
+export function createGroupAndCountLabels(items: Posts['items']) {
+  const labelCounts: {
+    [key: string]: {
+      id: string;
+      title: string;
+      count: number;
+      url: string;
+    };
+  } = {};
+
+  items.forEach(item => {
+    if (item.labels) {
+      item.labels.forEach(label => {
+        const l = label as unknown as string;
+        if (labelCounts[l]) {
+          labelCounts[l].count++;
+        } else {
+          labelCounts[l] = {
+            id: `tags-${l}`,
+            title: l,
+            count: 1,
+            url: `/search/label/${encodeURIComponent(l)}`
+          };
+        }
+      });
+    }
+  });
+
+  // Convert the labelCounts object into an array
+  const groupedLabels = Object.values(labelCounts);
+
+  const newItems = groupedLabels;
+
+  return newItems;
+}
+
 export function transformPost(data: Posts, authors: AppConfig['author']) {
   if (data?.items?.length > 0) {
     data.items = data.items.map(post => {
-      post = transformPostAuthor(post, authors);
-      post = transformPostLabel(post);
-      post.to = createPostUrl(post.url);
-      if (post.content) {
+      if (post.author) post = transformPostAuthor(post, authors);
+      if (post.labels) post = transformPostLabel(post);
+      if (post.url) post.to = createPostUrl(post.url);
+      if (post.content)
         post.summary = removeHtmlTags(post.content, 250, '[...]');
-      }
       return post;
     });
   }

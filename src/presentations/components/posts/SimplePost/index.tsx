@@ -38,13 +38,13 @@ function Component({ title }: SimplePostProps) {
       <div className="block sm:pb-8">
         {posts.items.map((item, idx) => (
           <div
+            key={`simple-post-${item.id}`}
             className={clsx(
               'mb-6 inline-block w-full border-b border-slate-300 px-6 pb-6 sm:mb-0 sm:border-none sm:px-0',
               idx === posts.items.length - 1 ? '!mb-0 !border-b-0 sm:!pb-0' : ''
             )}
           >
             <SimpleCard
-              key={`simple-post-${item.id}`}
               loading={posts.isLoading}
               image={item.images?.[0].url}
               title={item.title}
@@ -65,7 +65,7 @@ function Component({ title }: SimplePostProps) {
   };
 
   return (
-    <Container className="px-0 sm:px-6">
+    <Container className="px-0 sm:pl-6">
       <SectionTitle title={title || 'Recently Post'} />
       <div className="sm:px-0">{renderContent()}</div>
     </Container>

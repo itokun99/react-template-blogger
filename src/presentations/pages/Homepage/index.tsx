@@ -1,4 +1,4 @@
-import { SimplePost } from '@components';
+import { SimplePost, Container, SimpleLabelList } from '@components';
 import { useConfig } from '@hooks';
 import Top from './components/Top';
 
@@ -19,7 +19,18 @@ function Homepage() {
           label={v.label || ''}
         />
       ))}
-      {main && main.show && <SimplePost title={main.title} />}
+      <Container>
+        <div className="relative flex">
+          <div className="basis-8/12">
+            {main && main.show && <SimplePost title={main.title} />}
+          </div>
+          <div className="relative basis-4/12">
+            <div className="sticky top-20">
+              <SimpleLabelList title="All Tags" />
+            </div>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

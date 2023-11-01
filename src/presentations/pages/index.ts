@@ -1,6 +1,5 @@
-import { lazy } from 'react';
+import Root from './Root';
+import Homepage from './Homepage';
+import BloggerPost from './BloggerPost';
 
-const Root = lazy(() => import('./Root'));
-const Homepage = lazy(() => import('./Homepage'));
-
-export { Root, Homepage };
+export { Root, Homepage, BloggerPost };

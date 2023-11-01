@@ -13,6 +13,7 @@ export interface BloggerRequestParams {
   status?: 'draft' | 'live' | 'scheduled' | 'imported';
   view?: 'ADMIN' | 'AUTHOR' | 'READER';
   maxComments?: string | number;
+  fields?: string;
 }
 
 export interface BlogInfo {

@@ -14,4 +14,5 @@ export type ButtonWidth = 'auto' | 'full';
 export interface PostLabel {
   title: string;
   url: string;
+  totalItems?: number;
 }

@@ -16,8 +16,6 @@ function Component({ label, title }: LabeledPostProps) {
 
   const isSM = useMediaQuery(`(min-width: 640px)`);
 
-  console.log('posts =>', posts);
-
   const renderItems = () => {
     if (posts.isLoading) {
       return (
