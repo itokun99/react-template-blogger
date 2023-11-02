@@ -5,6 +5,7 @@ import useFeaturedPosts from './useFeaturedPosts';
 import useLabeledPosts from './useLabeledPosts';
 import useLatestPosts from './useLatestPosts';
 import useLabelList from './useLabelList';
+import usePostDetail from './usePostDetail';
 import { useMediaQuery } from './useMediaQuery';
 
 export {
@@ -15,5 +16,6 @@ export {
   useLabeledPosts,
   useLatestPosts,
   useMediaQuery,
-  useLabelList
+  useLabelList,
+  usePostDetail
 };

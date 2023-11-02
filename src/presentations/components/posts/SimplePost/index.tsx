@@ -35,7 +35,7 @@ function Component({ title }: SimplePostProps) {
     }
 
     return (
-      <div className="block sm:pb-8">
+      <div className="block sm:pb-6">
         {posts.items.map((item, idx) => (
           <div
             key={`simple-post-${item.id}`}
@@ -61,11 +61,11 @@ function Component({ title }: SimplePostProps) {
   };
 
   const renderContent = () => {
-    return <div className="block sm:pb-8">{renderItems()}</div>;
+    return <div className="block">{renderItems()}</div>;
   };
 
   return (
-    <Container className="px-0 sm:pl-6">
+    <Container className="px-0 sm:px-6">
       <SectionTitle title={title || 'Recently Post'} />
       <div className="sm:px-0">{renderContent()}</div>
     </Container>

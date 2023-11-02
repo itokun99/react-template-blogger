@@ -1,3 +1,5 @@
+import { AppConfig } from '../../app/entities';
+import { PostLabel } from '@general-types';
 export interface BloggerRequestParams {
   q?: string;
   key?: string;
@@ -14,6 +16,7 @@ export interface BloggerRequestParams {
   view?: 'ADMIN' | 'AUTHOR' | 'READER';
   maxComments?: string | number;
   fields?: string;
+  path?: string;
 }
 
 export interface BlogInfo {
@@ -25,23 +28,58 @@ export interface BlogInfo {
   updated: string;
   url: string;
   selfLink: string;
-  posts: Posts;
-  pages: Pages;
-  locale: Locale;
+  posts: TotalType;
+  pages: TotalType;
+  locale: {
+    language: string;
+    country: string;
+    variant: string;
+  };
 }
 
-interface Posts {
-  totalItems: number;
+export interface Posts {
+  kind: string;
+  nextPageToken: string;
+  items: Post[];
+  etag: string;
+}
+
+export interface Post {
+  kind: string;
+  id: string;
+  blog: {
+    id: string;
+  };
+  published: string;
+  updated: string;
+  url: string;
+  selfLink: string;
+  title: string;
+  content: string;
+  summary: string;
+  images: ImageType[];
+  author: Author;
+  replies: TotalType;
+  labels: PostLabel[];
+  etag: string;
+  to: string;
+}
+
+export interface Author {
+  id: string;
+  displayName: string;
+  url: string;
+  image: ImageType;
+  detail: AppConfig['author'][0];
+}
+
+interface TotalType {
+  totalItems: string | number;
   selfLink: string;
 }
 
-interface Pages {
-  totalItems: number;
-  selfLink: string;
+interface ImageType {
+  url: string;
 }
 
-interface Locale {
-  language: string;
-  country: string;
-  variant: string;
-}
+export type Pages = Posts;

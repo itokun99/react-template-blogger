@@ -16,3 +16,9 @@ export interface PostLabel {
   url: string;
   totalItems?: number;
 }
+
+export interface BreadCrumb {
+  title: string;
+  url: string;
+  id: number;
+}

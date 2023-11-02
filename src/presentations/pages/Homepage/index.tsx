@@ -20,12 +20,12 @@ function Homepage() {
         />
       ))}
       <Container>
-        <div className="relative flex">
-          <div className="basis-8/12">
+        <div className="relative flex flex-wrap">
+          <div className="md:w-8/12">
             {main && main.show && <SimplePost title={main.title} />}
           </div>
-          <div className="relative basis-4/12">
-            <div className="sticky top-20">
+          <div className="relative md:w-4/12">
+            <div className="mb-6 sm:px-0 md:sticky md:top-20">
               <SimpleLabelList title="All Tags" />
             </div>
           </div>

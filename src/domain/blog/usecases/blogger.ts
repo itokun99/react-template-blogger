@@ -1,5 +1,13 @@
-import { bloggerRepository, appStoreUsecase } from '@domain';
-import { transformPost, createGroupAndCountLabels } from '@utils';
+import {
+  bloggerRepository,
+  appStoreUsecase,
+  BloggerRequestParams
+} from '@domain';
+import {
+  transformPosts,
+  transformPost,
+  createGroupAndCountLabels
+} from '@utils';
 
 async function getInfo() {
   const { blogId, apiKey } = appStoreUsecase.getBloggerCredential();
@@ -26,7 +34,7 @@ async function getFeaturedPosts() {
     fields: 'items,nextPageToken'
   });
 
-  res.data = transformPost(res.data, authors);
+  res.data = transformPosts(res.data, authors);
 
   console.log('bloggerUseCase / getFeaturedPosts ==>', res);
   return res.data;
@@ -54,7 +62,7 @@ async function getPostsByLabel(label: string | string[]) {
     labels
   });
 
-  res.data = transformPost(res.data, authors);
+  res.data = transformPosts(res.data, authors);
 
   console.log('bloggerUseCase / getPostsByLabel ==>', res);
   return res.data;
@@ -74,7 +82,7 @@ async function getLatestPosts() {
     orderBy: 'published'
   });
 
-  res.data = transformPost(res.data, authors);
+  res.data = transformPosts(res.data, authors);
 
   console.log('bloggerUseCase / getLatestPosts ==>', res);
   return res.data;
@@ -101,12 +109,40 @@ async function getAllLabels() {
   return labels;
 }
 
+async function getPostDetail(id: string, params?: BloggerRequestParams) {
+  const { blogId, apiKey, authors } = appStoreUsecase.getBloggerCredential();
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
+  }
+
+  const res = await bloggerRepository.getPost(id, blogId, apiKey, {
+    maxResults: 1,
+    fetchBodies: true,
+    fetchImages: true,
+    orderBy: 'updated',
+    ...params
+  });
+
+  res.data = transformPost(res.data, authors);
+
+  console.log('bloggerUseCase / getPostDetail ==>', res);
+  return res.data;
+}
+
+async function getPostDetailByPath(path: string) {
+  return await getPostDetail(`bypath`, {
+    path
+  });
+}
+
 const bloggerUsecase = {
   getInfo,
   getFeaturedPosts,
   getPostsByLabel,
   getLatestPosts,
-  getAllLabels
+  getAllLabels,
+  getPostDetail,
+  getPostDetailByPath
 };
 
 export default bloggerUsecase;

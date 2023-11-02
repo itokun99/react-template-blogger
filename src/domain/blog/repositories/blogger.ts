@@ -22,6 +22,23 @@ function getPosts(
   });
 }
 
+function getPost(
+  id: string,
+  blogId: string,
+  apiKey: string,
+  params?: BloggerRequestParams
+) {
+  return httpClient.get<Posts['items'][0]>(
+    BLOGGER_API_ENDPOINTS.post(id, blogId),
+    {
+      params: {
+        ...params,
+        key: apiKey
+      }
+    }
+  );
+}
+
 function getPages(
   blogId: string,
   apiKey: string,
@@ -50,6 +67,7 @@ function searchPosts(
 
 const bloggerRepository = {
   blogInfo,
+  getPost,
   getPosts,
   getPages,
   searchPosts

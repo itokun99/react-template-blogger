@@ -4,6 +4,8 @@ export const BLOGGER_API_ENDPOINTS = {
   blog: (blogId: string) => `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}`,
   posts: (blogId: string) =>
     `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/posts`,
+  post: (id: string, blogId: string) =>
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/posts/${id}`,
   searchPosts: (blogId: string) =>
     `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/posts/search`,
   pages: (blogId: string) =>

@@ -44,7 +44,7 @@ function Component({ title }: SimplePostProps) {
   return (
     <Container className="px-0 sm:px-6">
       <SectionTitle title={title || 'Recently Post'} />
-      <div className="sm:px-0">{renderContent()}</div>
+      <div className="px-6 sm:px-0">{renderContent()}</div>
     </Container>
   );
 }

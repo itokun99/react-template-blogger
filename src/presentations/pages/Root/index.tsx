@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { Header, Footer } from '@components';
 
 function Root() {
@@ -9,6 +9,7 @@ function Root() {
         <Outlet />
       </div>
       <Footer />
+      <ScrollRestoration />
     </>
   );
 }

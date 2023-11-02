@@ -33,7 +33,7 @@ function Component() {
     <>
       <div className="border-t border-slate-300 bg-white">
         <Container className="block sm:flex">
-          <div className="basis-2/3 border-b border-slate-300 px-6 pb-14 pt-14 sm:border-b-0 sm:border-r sm:pb-6">
+          <div className="basis-8/12 border-b border-slate-300 px-6 pb-14 pt-14 sm:border-b-0 sm:pb-6">
             <div className="flex max-w-[375px] gap-4">
               <div className="">
                 <Image
@@ -52,7 +52,7 @@ function Component() {
               </div>
             </div>
           </div>
-          <div className="basis-1/3 p-6 pb-14 pt-14 sm:pb-6">
+          <div className="basis-4/12 p-6 pb-14 pt-14 sm:pb-6">
             <ul>
               {FOOTER_MENUS.map(menu => (
                 <li key={menu.id}>
