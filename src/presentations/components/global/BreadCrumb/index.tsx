@@ -37,7 +37,7 @@ function Component({ items, loading }: BreadCrumbProps) {
   }
 
   return (
-    <ul className="mb-2">
+    <ul className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
       <Item id={1} title="Home" url="/" />
       <Divider />
       {items.map(({ title, url, id }, idx) => {

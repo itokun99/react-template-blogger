@@ -25,12 +25,10 @@ function BloggerPost() {
     ? `Published on ${formatDate(query.data.published, 'MMM DD, YYYY')}`
     : '';
 
-  console.log('query ==>', query);
-
   return (
     <Container className="px-0">
-      <div className="flex">
-        <div className="w-8/12 px-6">
+      <div className="md:flex">
+        <div className="w-full px-6 md:w-8/12">
           <Content
             loading={query.isLoading}
             title={query.data?.title || ''}
@@ -46,8 +44,8 @@ function BloggerPost() {
             content={query.data?.content || ''}
           />
         </div>
-        <div className="relative w-4/12">
-          <div className="sticky top-20">
+        <div className="relative w-full md:w-4/12">
+          <div className="sticky top-20 mb-6">
             <SimpleLabelList title="All Tags" />
           </div>
         </div>
