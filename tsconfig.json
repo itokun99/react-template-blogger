@@ -46,8 +46,11 @@
       "@domain": [
         "./src/domain"
       ],
-      "@fake": [
-        "./src/fake"
+      "@apps": [
+        "./src/presentations/apps"
+      ],
+      "@src/*": [
+        "./src/*"
       ]
     },
     /* Bundler mode */

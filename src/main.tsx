@@ -1,11 +1,5 @@
-import './index.css';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { IconContext } from 'react-icons';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { appRouter } from '@routes';
-import { queryClient } from '@core';
+import { App } from '@apps';
 
 const rootEl = document.getElementById('root');
 const dataConfigUrl = rootEl?.getAttribute('data-config-url');
@@ -16,13 +10,5 @@ if (rootEl && dataConfigUrl) {
     configUrl: dataConfigUrl
   };
 
-  ReactDOM.createRoot(rootEl!).render(
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <IconContext.Provider value={{ color: '#ddd', className: 'a-icon' }}>
-          <RouterProvider router={appRouter} />
-        </IconContext.Provider>
-      </QueryClientProvider>
-    </React.StrictMode>
-  );
+  ReactDOM.createRoot(rootEl!).render(<App />);
 }
