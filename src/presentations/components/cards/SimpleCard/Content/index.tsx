@@ -28,7 +28,7 @@ function Component({
   return (
     <div className="">
       {/* Tags */}
-      <div className="pt-0 md:pt-2">
+      <div className="pt-0">
         {labels?.map(v => (
           <Hashtag key={v.title} title={v.title} url={v.url} />
         ))}

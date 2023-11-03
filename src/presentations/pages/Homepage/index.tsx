@@ -1,4 +1,4 @@
-import { SimplePost, Container, SimpleLabelList } from '@components';
+import { SimplePost, Container, SimpleLabelList, Button } from '@components';
 import { useConfig } from '@hooks';
 import Top from './components/Top';
 
@@ -22,7 +22,19 @@ function Homepage() {
       <Container>
         <div className="relative flex flex-wrap">
           <div className="md:w-8/12">
-            {main && main.show && <SimplePost title={main.title} />}
+            {main && main.show && (
+              <>
+                <SimplePost title={main.title} />
+                <div className="px-6 pb-6">
+                  <Button
+                    url="/search"
+                    className="inline-block w-full text-center"
+                  >
+                    See More Content
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
           <div className="relative md:w-4/12">
             <div className="mb-6 sm:px-0 md:sticky md:top-20">

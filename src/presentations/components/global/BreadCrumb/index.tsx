@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface BreadCrumbItem {
+export interface BreadCrumbItem {
   title: string;
   url: string;
   id: number;
 }
 
-interface BreadCrumbProps {
+export interface BreadCrumbProps {
   items: BreadCrumbItem[];
   loading?: boolean;
 }

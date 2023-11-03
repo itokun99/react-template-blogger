@@ -57,6 +57,24 @@ export type AppConfig = {
         title: string;
         show: boolean;
       };
+      sidebar: Array<{
+        id: number;
+        title: string;
+        type: string;
+        show: boolean;
+        data?: Array<{
+          id: number;
+          type: string;
+          image?: string;
+          url?: string;
+          content?: string;
+          data?: Array<{
+            id: number;
+            image: string;
+            url: string;
+          }>;
+        }>;
+      }>;
     };
   };
 };

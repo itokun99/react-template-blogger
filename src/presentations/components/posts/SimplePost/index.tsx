@@ -11,10 +11,10 @@ interface SimplePostProps {
 }
 
 function Component({ title }: SimplePostProps) {
-  const posts = useLatestPosts();
+  const query = useLatestPosts();
 
   const renderItems = () => {
-    if (posts.isLoading) {
+    if (query.isLoading) {
       return (
         <>
           {LOADING_ITEMS.map((i, idx) => (
@@ -27,7 +27,7 @@ function Component({ title }: SimplePostProps) {
                   : ''
               )}
             >
-              <SimpleCard loading={posts.isLoading} />
+              <SimpleCard loading={query.isLoading} />
             </div>
           ))}
         </>
@@ -36,16 +36,16 @@ function Component({ title }: SimplePostProps) {
 
     return (
       <div className="block sm:pb-6">
-        {posts.items.map((item, idx) => (
+        {query.items.map((item, idx) => (
           <div
             key={`simple-post-${item.id}`}
             className={clsx(
               'mb-6 inline-block w-full border-b border-slate-300 px-6 pb-6 sm:mb-0 sm:border-none sm:px-0',
-              idx === posts.items.length - 1 ? '!mb-0 !border-b-0 sm:!pb-0' : ''
+              idx === query.items.length - 1 ? '!mb-0 !border-b-0 sm:!pb-0' : ''
             )}
           >
             <SimpleCard
-              loading={posts.isLoading}
+              loading={query.isLoading}
               image={item.images?.[0].url}
               title={item.title}
               labels={item.labels}

@@ -19,14 +19,18 @@ interface ButtonProps extends PropsWithChildren {
   url?: string;
   icon?: React.ReactNode;
   iconAlign?: 'start' | 'end';
+  name?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function Component({
+  name,
   children,
   className,
   type = 'button',
   url,
   icon,
+  onClick,
   iconAlign = 'start'
 }: ButtonProps) {
   const buttonClasses = useMemo(() => {
@@ -68,7 +72,7 @@ function Component({
   }
 
   return (
-    <button type={type} className={buttonClasses}>
+    <button onClick={onClick} name={name} type={type} className={buttonClasses}>
       {renderContent()}
     </button>
   );

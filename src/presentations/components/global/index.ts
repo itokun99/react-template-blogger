@@ -7,3 +7,5 @@ import BreadCrumb from './BreadCrumb';
 import Content from './Content';
 
 export { Container, Button, Image, Hashtag, SectionTitle, BreadCrumb, Content };
+
+export * from './BreadCrumb';
