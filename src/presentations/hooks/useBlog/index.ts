@@ -10,8 +10,15 @@ export default function useBlog() {
     enabled: config.isEnableQueries
   });
 
+  const logo = config?.data?.app?.logo || '';
+  const headerLinks = config?.data?.menu?.header || [];
+  const title = query?.data?.name || '';
+
   return {
     ...query,
-    config
+    config,
+    headerLinks,
+    logo,
+    title
   };
 }

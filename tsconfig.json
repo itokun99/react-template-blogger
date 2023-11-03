@@ -16,6 +16,9 @@
       "@containers": [
         "./src/presentations/containers"
       ],
+      "@layouts": [
+        "./src/presentations/layouts"
+      ],
       "@hooks": [
         "./src/presentations/hooks"
       ],

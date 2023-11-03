@@ -2,7 +2,7 @@ import { SimplePost, Container, SimpleLabelList, Button } from '@components';
 import { useConfig } from '@hooks';
 import Top from './components/Top';
 
-function Homepage() {
+function Home() {
   const config = useConfig();
   const section = config.data?.sectionConfig?.homepage;
   const top = section?.top || [];
@@ -47,4 +47,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Home;

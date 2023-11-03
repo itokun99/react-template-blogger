@@ -3,18 +3,14 @@ import {
   createRoutesFromElements,
   Route
 } from 'react-router-dom';
-import { Root, Homepage, BloggerPost, SearchPage } from '@pages';
+import { Root, Home, PostDetail, Search } from '@pages';
 
 export const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/:year/:month/:title" element={<BloggerPost />} />
-      <Route
-        path="/"
-        element={<Homepage />}
-        errorElement={<div>Test Error</div>}
-      />
+      <Route path="/search" element={<Search />} />
+      <Route path="/blog/:year/:month/:title" element={<PostDetail />} />
+      <Route path="/" element={<Home />} errorElement={<div>Test Error</div>} />
     </Route>
   )
 );

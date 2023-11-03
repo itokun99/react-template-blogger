@@ -5,7 +5,7 @@ import { Container, Content, SimpleLabelList } from '@components';
 import { usePostDetail } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
 
-function BloggerPost() {
+function PostDetail() {
   const params = useParams();
 
   const year = params.year;
@@ -54,4 +54,4 @@ function BloggerPost() {
   );
 }
 
-export default BloggerPost;
+export default PostDetail;

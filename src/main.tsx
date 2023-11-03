@@ -8,13 +8,11 @@ import { appRouter } from '@routes';
 import { queryClient } from '@core';
 
 const rootEl = document.getElementById('root');
-const dataConfig = rootEl?.getAttribute('data-config');
 const dataConfigUrl = rootEl?.getAttribute('data-config-url');
 
-if (rootEl && dataConfig && dataConfigUrl) {
+if (rootEl && dataConfigUrl) {
   const w = window as unknown as { __REACT_TEMPLATE_BLOGGER__: object };
   w['__REACT_TEMPLATE_BLOGGER__'] = {
-    configId: dataConfig,
     configUrl: dataConfigUrl
   };
 
