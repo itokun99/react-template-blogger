@@ -6,7 +6,9 @@ import useLabeledPosts from './useLabeledPosts';
 import useLatestPosts from './useLatestPosts';
 import useLabelList from './useLabelList';
 import usePostDetail from './usePostDetail';
+import useSearchPost from './useSearchPost';
 import { useMediaQuery } from './useMediaQuery';
+import { useDebounce } from './useDebounce';
 
 export {
   useBlog,
@@ -15,7 +17,9 @@ export {
   useFeaturedPosts,
   useLabeledPosts,
   useLatestPosts,
+  useSearchPost,
   useMediaQuery,
   useLabelList,
-  usePostDetail
+  usePostDetail,
+  useDebounce
 };

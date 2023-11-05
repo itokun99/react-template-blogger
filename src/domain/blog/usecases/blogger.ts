@@ -6,7 +6,8 @@ import {
 import {
   transformPosts,
   transformPost,
-  createGroupAndCountLabels
+  createGroupAndCountLabels,
+  removeHtmlTags
 } from '@utils';
 
 async function getInfo() {
@@ -135,6 +136,54 @@ async function getPostDetailByPath(path: string) {
   });
 }
 
+async function searchPostsByQueryAndLabels(q: string, labels: string) {
+  const { blogId, apiKey, authors } = appStoreUsecase.getBloggerCredential();
+
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
+  }
+
+  const hasLabel = Boolean(labels);
+  const hasQuery = Boolean(q);
+
+  if (hasLabel) {
+    const res = await bloggerRepository.getPosts(blogId, apiKey, {
+      maxResults: 10,
+      fetchBodies: true,
+      fetchImages: true,
+      orderBy: 'published',
+      labels
+    });
+
+    res.data = transformPosts(res.data, authors);
+
+    if (hasQuery && res.data?.items?.length > 0) {
+      res.data.items = res.data.items.filter(item => {
+        console.log(
+          'nut ==>',
+          removeHtmlTags(item.content, 9999999, '').toLowerCase().includes('')
+        );
+        return (
+          item.title.toLowerCase().includes(q) ||
+          removeHtmlTags(item.content, 9999999, '')?.toLowerCase()?.includes(q)
+        );
+      });
+    }
+
+    console.log('bloggerUseCase / searchPostsByQueryAndLabels ==>', res);
+    return res.data;
+  }
+
+  const res = await bloggerRepository.searchPosts(blogId, apiKey, {
+    orderBy: 'published',
+    q
+  });
+
+  res.data = transformPosts(res.data, authors);
+  console.log('bloggerUseCase / searchPostsByQueryAndLabels ==>', res);
+  return res.data;
+}
+
 const bloggerUsecase = {
   getInfo,
   getFeaturedPosts,
@@ -142,7 +191,8 @@ const bloggerUsecase = {
   getLatestPosts,
   getAllLabels,
   getPostDetail,
-  getPostDetailByPath
+  getPostDetailByPath,
+  searchPostsByQueryAndLabels
 };
 
 export default bloggerUsecase;

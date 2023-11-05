@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, useSearchParams } from 'react-router-dom';
-import { Button, TextField, MultiSelect, MultiSelectOption } from '@components';
-import useLabelList from '../../../hooks/useLabelList';
+import { TextField, MultiSelect, MultiSelectOption } from '@components';
+import { useLabelList, useSearchPost } from '@hooks';
 
 function createOptions(
   items: { id: string; title: string; count: number; url: string }[]
@@ -17,28 +17,33 @@ function Component() {
   const query = useLabelList();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const tags = searchParams.get('tags') || '';
+  const labels = searchParams.get('labels') || '';
   const q = searchParams.get('q') || '';
 
-  const selectValue = tags
-    ? tags.split(',').map((v, i) => ({ id: i + 1, value: v, text: v }))
+  const selectValue = labels
+    ? labels.split(',').map((v, i) => ({ id: i + 1, value: v, text: v }))
     : [];
 
   const options = createOptions(query.items);
 
   function onChangeSelect(value: MultiSelectOption[]) {
-    const newTags = value.map(v => v.value).join();
-    setSearchParams(v => ({ ...v, tags: newTags, q }));
+    const newlabels = value.map(v => v.value).join();
+    setSearchParams(v => ({ ...v, labels: newlabels, q }));
   }
 
   function onBlurSearch(e: React.FocusEvent<HTMLInputElement>) {
     const { value } = e.target;
-    setSearchParams(v => ({ ...v, q: value, tags }));
+    setSearchParams(v => ({ ...v, q: value, labels }));
+  }
+
+  function onChangeTextField(e: React.ChangeEvent<HTMLInputElement>) {
+    const { value } = e.target;
+    setSearchParams(v => ({ ...v, q: value, labels }));
   }
 
   function onSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e?.preventDefault?.();
-    setSearchParams(v => ({ ...v, tags, q }));
+    setSearchParams(v => ({ ...v, q, labels }));
   }
 
   return (
@@ -52,13 +57,14 @@ function Component() {
           type="search"
           placeholder={`Type anything to search...`}
           defaultValue={q || ''}
+          onChange={onChangeTextField}
           onBlur={onBlurSearch}
         />
       </div>
       <div className="c-form-group">
         <MultiSelect
           loading={query.isLoading}
-          name="tags"
+          name="labels"
           type="button"
           value={selectValue}
           options={options}

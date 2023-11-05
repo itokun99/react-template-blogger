@@ -4,3 +4,4 @@ export * from './footers';
 export * from './cards';
 export * from './inputs';
 export * from './filters';
+export * from './posts';

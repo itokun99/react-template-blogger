@@ -9,6 +9,7 @@ export interface TextFieldProps {
   placeholder?: string;
   name?: string;
   defaultValue?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
@@ -20,7 +21,8 @@ function Component({
   placeholder,
   name,
   defaultValue,
-  onBlur
+  onBlur,
+  onChange
 }: TextFieldProps) {
   const inputClasses = clsx(
     'c-text-field-input',
@@ -40,6 +42,7 @@ function Component({
         className={inputClasses}
         defaultValue={defaultValue}
         onBlur={onBlur}
+        onChange={onChange}
       />
     </div>
   );
