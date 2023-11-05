@@ -51,13 +51,17 @@ export type AppConfig = {
         title: string;
         type: string;
         show: boolean;
-        label?: string;
+        data?: {
+          label: string;
+        };
       }>;
-      main: {
+      main: Array<{
+        id: number;
         title: string;
+        type: string;
         show: boolean;
-      };
-      sidebar: Array<{
+      }>;
+      side: Array<{
         id: number;
         title: string;
         type: string;
@@ -74,6 +78,14 @@ export type AppConfig = {
             url: string;
           }>;
         }>;
+      }>;
+    };
+    postDetail: {
+      side: Array<{
+        id: number;
+        title: string;
+        type: string;
+        show: boolean;
       }>;
     };
   };

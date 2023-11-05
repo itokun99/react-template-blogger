@@ -4,7 +4,7 @@ import { Container, SectionTitle, PostCard } from '@components';
 import { useLabeledPosts, useMediaQuery } from '@hooks';
 import { formatDate, createAuthorDataFromPost, removeHtmlTags } from '@utils';
 
-interface LabeledPostProps {
+export interface LabeledPostProps {
   label: string | string[];
   title?: string | React.ReactNode;
 }
@@ -81,6 +81,4 @@ function Component({ label, title }: LabeledPostProps) {
   );
 }
 
-const LabeledPost = React.memo(Component);
-
-export default LabeledPost;
+export const LabeledPost = React.memo(Component);

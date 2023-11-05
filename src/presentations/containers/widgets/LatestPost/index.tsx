@@ -6,11 +6,11 @@ import { formatDate, createAuthorDataFromPost } from '@utils';
 
 const LOADING_ITEMS = [1, 2, 3, 4];
 
-interface SimplePostProps {
+export interface LatestPostProps {
   title?: string | React.ReactNode;
 }
 
-function Component({ title }: SimplePostProps) {
+function Component({ title }: LatestPostProps) {
   const query = useLatestPosts();
 
   const renderItems = () => {
@@ -72,6 +72,4 @@ function Component({ title }: SimplePostProps) {
   );
 }
 
-const SimplePost = React.memo(Component);
-
-export default SimplePost;
+export const LatestPost = React.memo(Component);

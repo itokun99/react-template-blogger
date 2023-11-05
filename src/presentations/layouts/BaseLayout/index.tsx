@@ -7,10 +7,10 @@ export interface BaseLayoutProps extends PropsWithChildren {
 
 export function BaseLayout({ header, children, footer }: BaseLayoutProps) {
   return (
-    <React.Fragment>
+    <div className="c-base-layout">
       {header}
-      <div className="pt-20">{children}</div>
+      <div className="c-base-layout-main pt-20">{children}</div>
       {footer}
-    </React.Fragment>
+    </div>
   );
 }

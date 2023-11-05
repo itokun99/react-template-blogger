@@ -1,6 +1,7 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
 import Header from './components/Header';
+import { Container } from '@components';
 
 interface ContentProps {
   breadcrumb: { title: string; url: string; id: number }[];
@@ -23,27 +24,29 @@ function Component({
 }: ContentProps) {
   return (
     <div className="c-content">
-      <Header
-        loading={loading}
-        breadcrumb={breadcrumb}
-        title={title}
-        author={author}
-      />
-      {loading ? (
-        <div>
-          <div className="mb-6 h-0 w-full rounded-2xl bg-slate-300 pb-[62.5%]"></div>
-          <div className="mb-4 h-6 w-8/12 rounded-full bg-slate-300"></div>
-          <div className="mb-4 h-4 w-full rounded-full bg-slate-300"></div>
-          <div className="mb-4 h-4 w-9/12 rounded-full bg-slate-300"></div>
-        </div>
-      ) : (
-        <div
-          className="c-content-body mb-14"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(content)
-          }}
+      <Container className="px-6">
+        <Header
+          loading={loading}
+          breadcrumb={breadcrumb}
+          title={title}
+          author={author}
         />
-      )}
+        {loading ? (
+          <div>
+            <div className="mb-6 h-0 w-full rounded-2xl bg-slate-300 pb-[62.5%]"></div>
+            <div className="mb-4 h-6 w-8/12 rounded-full bg-slate-300"></div>
+            <div className="mb-4 h-4 w-full rounded-full bg-slate-300"></div>
+            <div className="mb-4 h-4 w-9/12 rounded-full bg-slate-300"></div>
+          </div>
+        ) : (
+          <div
+            className="c-content-body mb-14"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(content)
+            }}
+          />
+        )}
+      </Container>
     </div>
   );
 }

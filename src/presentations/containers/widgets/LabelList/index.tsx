@@ -2,11 +2,11 @@ import React from 'react';
 import { Container, SectionTitle, Hashtag } from '@components';
 import { useLabelList } from '@hooks';
 
-interface SimplePostProps {
+export interface LabelListProps {
   title?: string | React.ReactNode;
 }
 
-function Component({ title }: SimplePostProps) {
+function Component({ title }: LabelListProps) {
   const query = useLabelList();
 
   const renderItems = () => {
@@ -43,12 +43,10 @@ function Component({ title }: SimplePostProps) {
 
   return (
     <Container className="px-0 sm:px-6">
-      <SectionTitle title={title || 'Recently Post'} />
+      <SectionTitle title={title || 'Label List'} />
       <div className="px-6 sm:px-0">{renderContent()}</div>
     </Container>
   );
 }
 
-const SimplePost = React.memo(Component);
-
-export default SimplePost;
+export const LabelList = React.memo(Component);

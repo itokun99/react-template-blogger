@@ -3,7 +3,7 @@ import { Container, SectionTitle, FeaturedCard } from '@components';
 import { useFeaturedPosts } from '@hooks';
 import { formatDate, createAuthorDataFromPost } from '@utils';
 
-interface FeaturedPostProps {
+export interface FeaturedPostProps {
   title?: string | React.ReactNode;
 }
 
@@ -43,6 +43,4 @@ function Component({ title }: FeaturedPostProps) {
   );
 }
 
-const FeaturedPost = React.memo(Component);
-
-export default FeaturedPost;
+export const FeaturedPost = React.memo(Component);

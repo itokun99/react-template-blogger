@@ -4,7 +4,7 @@ import { FiSearch } from 'react-icons/fi';
 
 function Component() {
   return (
-    <div className="c-header-search flex items-center">
+    <div className="c-base-header-search flex items-center">
       <Link to="/search" className="flex h-6 w-6 items-center justify-center">
         <FiSearch className="text-lg !text-slate-600" />
       </Link>

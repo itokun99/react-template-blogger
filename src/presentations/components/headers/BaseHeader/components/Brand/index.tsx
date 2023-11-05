@@ -10,7 +10,7 @@ export interface BrandProps {
 
 function Component({ loading, logo, title }: BrandProps) {
   return (
-    <div className="c-header-brand">
+    <div className="c-base-header-brand">
       <Link to="/">
         <div className="flex items-center">
           <Image

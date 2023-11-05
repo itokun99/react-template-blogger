@@ -39,7 +39,9 @@ function Component({ loading, items }: NavProps) {
     );
   }
 
-  return <ul className="c-header-nav hidden gap-8 md:flex">{renderItems()}</ul>;
+  return (
+    <ul className="c-base-header-nav hidden gap-8 md:flex">{renderItems()}</ul>
+  );
 }
 
 const Nav = React.memo(Component);

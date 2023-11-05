@@ -17,8 +17,8 @@ export interface BaseHeaderProps {
 
 function Component({ loading, logo, title, menus }: BaseHeaderProps) {
   return (
-    <div className="c-header fixed top-0 z-20 w-full border border-b-slate-300 bg-white py-2">
-      <Container className="c-header-container px-6">
+    <div className="c-base-header fixed top-0 z-20 w-full border border-b-slate-300 bg-white py-2">
+      <Container className="c-base-header-container px-6">
         <div className="flex justify-between">
           <div>
             <Brand loading={loading} title={title} logo={logo} />

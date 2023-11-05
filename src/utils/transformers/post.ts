@@ -13,7 +13,7 @@ export function transformPostLabel(labels: Posts['items'][0]['labels']) {
 }
 
 export function createPostUrl(url: string) {
-  return removeDomainAndSubdomain(url);
+  return `/blog${removeDomainAndSubdomain(url)}`;
 }
 
 export function transformPostAuthor(

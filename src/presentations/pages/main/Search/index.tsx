@@ -1,13 +1,7 @@
 import { useMemo } from 'react';
 import { useParams, Form } from 'react-router-dom';
 
-import {
-  Container,
-  Content,
-  SimpleLabelList,
-  SearchAndFilter,
-  SectionTitle
-} from '@components';
+import { Container, Content, SearchAndFilter, SectionTitle } from '@components';
 import { usePostDetail } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
 
