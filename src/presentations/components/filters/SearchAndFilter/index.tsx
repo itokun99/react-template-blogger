@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, useSearchParams } from 'react-router-dom';
 import { TextField, MultiSelect, MultiSelectOption } from '@components';
-import { useLabelList, useSearchPost } from '@hooks';
+import { useLabelList } from '@hooks';
 
 function createOptions(
   items: { id: string; title: string; count: number; url: string }[]
@@ -19,6 +19,7 @@ function Component() {
 
   const labels = searchParams.get('labels') || '';
   const q = searchParams.get('q') || '';
+  const queryStrings = Object.fromEntries(searchParams.entries());
 
   const selectValue = labels
     ? labels.split(',').map((v, i) => ({ id: i + 1, value: v, text: v }))
@@ -28,28 +29,23 @@ function Component() {
 
   function onChangeSelect(value: MultiSelectOption[]) {
     const newlabels = value.map(v => v.value).join();
-    setSearchParams(v => ({ ...v, labels: newlabels, q }));
-  }
-
-  function onBlurSearch(e: React.FocusEvent<HTMLInputElement>) {
-    const { value } = e.target;
-    setSearchParams(v => ({ ...v, q: value, labels }));
+    setSearchParams(v => ({ ...v, ...queryStrings, labels: newlabels }));
   }
 
   function onChangeTextField(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
-    setSearchParams(v => ({ ...v, q: value, labels }));
+    setSearchParams(v => ({ ...v, ...queryStrings, q: value }));
   }
 
   function onSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e?.preventDefault?.();
-    setSearchParams(v => ({ ...v, q, labels }));
+    setSearchParams(v => ({ ...v, ...queryStrings }));
   }
 
   return (
     <Form
       onSubmit={onSubmitForm}
-      className="c-search-filter border border-slate-300 p-6"
+      className="c-search-filter border-b border-slate-300 px-6 pb-6 md:border md:p-6"
     >
       <div className="c-form-group mb-6">
         <TextField
@@ -58,7 +54,6 @@ function Component() {
           placeholder={`Type anything to search...`}
           defaultValue={q || ''}
           onChange={onChangeTextField}
-          onBlur={onBlurSearch}
         />
       </div>
       <div className="c-form-group">

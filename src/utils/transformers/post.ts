@@ -5,7 +5,7 @@ export function transformPostLabel(labels: Posts['items'][0]['labels']) {
   if (labels && labels.length > 0) {
     labels = labels.map(value => ({
       title: value as unknown as string,
-      url: `/search?label=${encodeURIComponent(value as unknown as string)}`
+      url: `/search?labels=${encodeURIComponent(value as unknown as string)}`
     }));
   }
 
@@ -54,7 +54,7 @@ export function createGroupAndCountLabels(items: Posts['items']) {
             id: `tags-${l}`,
             title: l,
             count: 1,
-            url: `/search?label=${encodeURIComponent(l)}`
+            url: `/search?labels=${encodeURIComponent(l)}`
           };
         }
       });

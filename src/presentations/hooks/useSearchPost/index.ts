@@ -7,7 +7,7 @@ interface Options {
   labels: string;
 }
 
-export default function ueSearchPost({ q, labels }: Options) {
+export default function useSearchPost({ q, labels }: Options) {
   const { config } = useBlog();
   const query = useQuery({
     queryKey: ['searchPosts', config.apiKey, config.blogId, q, labels],
@@ -15,10 +15,12 @@ export default function ueSearchPost({ q, labels }: Options) {
     enabled: config.isEnableQueries
   });
 
-  let items = query.data?.items || [];
+  const items = query.data?.items || [];
+  const isEmpty = items.length === 0;
 
   return {
     ...query,
-    items
+    items,
+    isEmpty
   };
 }

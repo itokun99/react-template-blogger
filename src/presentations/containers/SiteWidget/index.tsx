@@ -1,12 +1,18 @@
 import React from 'react';
-import { FeaturedPost, LabeledPost, LabelList, LatestPost } from '@containers';
+import {
+  FeaturedPost,
+  LabeledPost,
+  LabeledPostProps,
+  LabelList,
+  LatestPost
+} from '@containers';
 
 interface SiteWidgetProps {
   type: string;
   title: string | React.ReactNode;
   show: boolean;
   label?: string | string[];
-  data?: any;
+  data?: unknown;
 }
 
 function Component({ type, show, title, data }: SiteWidgetProps) {
@@ -16,7 +22,12 @@ function Component({ type, show, title, data }: SiteWidgetProps) {
     case 'featured-post':
       return <FeaturedPost title={title} />;
     case 'labeled-post':
-      return <LabeledPost title={title} label={data?.label || ''} />;
+      return (
+        <LabeledPost
+          title={title}
+          label={(data as LabeledPostProps).label || ''}
+        />
+      );
     case 'label-list':
       return <LabelList title={title} />;
     case 'latest-post':

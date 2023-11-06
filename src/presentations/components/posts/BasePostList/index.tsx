@@ -9,10 +9,11 @@ const LOADING_ITEMS = [1, 2, 3, 4];
 export interface BasePostList {
   title?: string | React.ReactNode;
   loading?: boolean;
+  empty?: boolean;
   items: Post[];
 }
 
-function Component({ title, loading, items }: BasePostList) {
+function Component({ title, loading, items, empty }: BasePostList) {
   const renderItems = () => {
     if (loading) {
       return (
@@ -31,6 +32,14 @@ function Component({ title, loading, items }: BasePostList) {
             </div>
           ))}
         </>
+      );
+    }
+
+    if (empty) {
+      return (
+        <div className="w-full border border-slate-300 p-6 text-center text-slate-700">
+          <p>Result not found</p>
+        </div>
       );
     }
 

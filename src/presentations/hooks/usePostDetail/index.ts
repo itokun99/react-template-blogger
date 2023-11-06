@@ -20,7 +20,7 @@ export default function usePostDetail(option: Option) {
 
   const data = query.data;
 
-  const labels = data?.labels || [];
+  const labels = useMemo(() => data?.labels || [], [data?.labels]);
   const title = data?.title || '';
 
   const breadCrumb = useMemo(() => {
@@ -32,7 +32,7 @@ export default function usePostDetail(option: Option) {
     if (title) result.push({ id: 2, title: title, url: '#' });
 
     return result;
-  }, [labels[0], title]);
+  }, [labels, title]);
 
   return {
     ...query,

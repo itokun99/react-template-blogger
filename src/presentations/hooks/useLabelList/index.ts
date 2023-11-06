@@ -10,7 +10,7 @@ export default function useLabelList() {
     enabled: config.isEnableQueries
   });
 
-  let items = query.data || [];
+  const items = query.data || [];
 
   return {
     ...query,

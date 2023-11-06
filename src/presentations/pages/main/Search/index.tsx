@@ -1,15 +1,10 @@
-import { useEffect, useMemo } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
-import {
-  Container,
-  Content,
-  SearchAndFilter,
-  SectionTitle,
-  BasePostList
-} from '@components';
-import { usePostDetail, useSearchPost, useDebounce } from '@hooks';
-import { createAuthorDataFromPost, formatDate } from '@utils';
+import { SearchAndFilter, BasePostList } from '@components';
+
+import { ContentLayout } from '@layouts';
+
+import { useSearchPost, useDebounce } from '@hooks';
 
 function Search() {
   const [searchParams] = useSearchParams();
@@ -23,23 +18,23 @@ function Search() {
   const query = useSearchPost({ q: debounceQ, labels: debounceLabels });
 
   return (
-    <Container className="px-0">
-      <div className="md:flex">
-        <div className="relative w-full md:w-4/12">
-          <div className="sticky top-20 mb-6 px-6">
-            {/* Search */}
-            <SearchAndFilter />
-          </div>
+    <ContentLayout
+      main={
+        <BasePostList
+          title="Search Result"
+          loading={query.isLoading}
+          items={query.items}
+          empty={query.isEmpty}
+        />
+      }
+      side={
+        <div className="md:px-6">
+          <SearchAndFilter />
         </div>
-        <div className="w-full md:w-8/12">
-          <BasePostList
-            title="Search Result"
-            loading={query.isLoading}
-            items={query.items}
-          />
-        </div>
-      </div>
-    </Container>
+      }
+      stickySide
+      sideAlign="start"
+    />
   );
 }
 

@@ -8,6 +8,7 @@ export interface ContentLayoutProps {
   side: React.ReactNode;
   stickySide?: boolean;
   bottom?: React.ReactNode;
+  sideAlign?: 'start' | 'end';
 }
 
 function Component({
@@ -15,22 +16,30 @@ function Component({
   main,
   side,
   stickySide,
-  bottom
+  bottom,
+  sideAlign = 'end'
 }: ContentLayoutProps) {
   const innerSideClasses = useMemo(
     () => clsx(`mb-6 sm:px-0 md:top-20`, stickySide && 'md:sticky'),
     [stickySide]
   );
 
+  const renderSide = () => {
+    return (
+      <aside className="c-content-layout-side relative w-full md:w-4/12">
+        <div className={innerSideClasses}>{side}</div>
+      </aside>
+    );
+  };
+
   return (
     <div className="c-content-layout">
       {top}
       <Container>
         <div className="relative flex flex-wrap">
-          <div className="c-content-layout-main md:w-8/12">{main}</div>
-          <aside className="c-content-layout-side relative md:w-4/12">
-            <div className={innerSideClasses}>{side}</div>
-          </aside>
+          {sideAlign === 'start' && renderSide()}
+          <div className="c-content-layout-main w-full md:w-8/12">{main}</div>
+          {sideAlign === 'end' && renderSide()}
         </div>
       </Container>
       {bottom}

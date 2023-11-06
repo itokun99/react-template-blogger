@@ -6,8 +6,7 @@ import {
 import {
   transformPosts,
   transformPost,
-  createGroupAndCountLabels,
-  removeHtmlTags
+  createGroupAndCountLabels
 } from '@utils';
 
 async function getInfo() {
@@ -146,7 +145,7 @@ async function searchPostsByQueryAndLabels(q: string, labels: string) {
   const hasLabel = Boolean(labels);
   const hasQuery = Boolean(q);
 
-  if (hasLabel) {
+  if (hasLabel && !hasQuery) {
     const res = await bloggerRepository.getPosts(blogId, apiKey, {
       maxResults: 10,
       fetchBodies: true,
@@ -156,19 +155,6 @@ async function searchPostsByQueryAndLabels(q: string, labels: string) {
     });
 
     res.data = transformPosts(res.data, authors);
-
-    if (hasQuery && res.data?.items?.length > 0) {
-      res.data.items = res.data.items.filter(item => {
-        console.log(
-          'nut ==>',
-          removeHtmlTags(item.content, 9999999, '').toLowerCase().includes('')
-        );
-        return (
-          item.title.toLowerCase().includes(q) ||
-          removeHtmlTags(item.content, 9999999, '')?.toLowerCase()?.includes(q)
-        );
-      });
-    }
 
     console.log('bloggerUseCase / searchPostsByQueryAndLabels ==>', res);
     return res.data;
@@ -180,6 +166,23 @@ async function searchPostsByQueryAndLabels(q: string, labels: string) {
   });
 
   res.data = transformPosts(res.data, authors);
+
+  if (hasLabel && res.data?.items?.length > 0) {
+    res.data.items = res.data.items.filter(
+      item =>
+        item.labels?.some(label => {
+          if (labels.includes(',')) {
+            return labels
+              .split(',')
+              .some(text =>
+                text.toLowerCase().includes(label.title.toLowerCase())
+              );
+          }
+          return label.title.toLowerCase().includes(labels.toLowerCase());
+        })
+    );
+  }
+
   console.log('bloggerUseCase / searchPostsByQueryAndLabels ==>', res);
   return res.data;
 }
