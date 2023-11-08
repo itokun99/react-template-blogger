@@ -68,7 +68,7 @@ async function getPostsByLabel(label: string | string[]) {
   return res.data;
 }
 
-async function getLatestPosts() {
+async function getLatestPosts(requestParams?: BloggerRequestParams) {
   const { blogId, apiKey, authors } = appStoreUsecase.getBloggerCredential();
 
   if (!apiKey || !blogId) {
@@ -79,7 +79,8 @@ async function getLatestPosts() {
     maxResults: 10,
     fetchBodies: true,
     fetchImages: true,
-    orderBy: 'published'
+    orderBy: 'published',
+    ...requestParams
   });
 
   res.data = transformPosts(res.data, authors);

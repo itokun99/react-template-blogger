@@ -1,17 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
-import { bloggerUsecase } from '@domain';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { Post, bloggerUsecase } from '@domain';
 import { useBlog, useFeaturedPosts } from '@hooks';
 
 export default function useLatestPosts() {
   const { config } = useBlog();
   const featuredPost = useFeaturedPosts();
-  const query = useQuery({
+  const query = useInfiniteQuery({
     queryKey: ['latestPosts', config.apiKey, config.blogId],
-    queryFn: bloggerUsecase.getLatestPosts,
-    enabled: config.isEnableQueries
+    queryFn: ({ pageParam: pageToken }) => {
+      return bloggerUsecase.getLatestPosts({ ...(pageToken && { pageToken }) });
+    },
+    enabled: config.isEnableQueries,
+    getNextPageParam: lastPage => lastPage.nextPageToken,
+    initialPageParam: ''
   });
 
-  let items = query.data?.items || [];
+  query.data?.pages;
+  const pages = query.data?.pages || [];
+  let items: Post[] = [];
+  pages.forEach(page => page.items.forEach(item => items.push(item)));
+
+  console.log('items ==>', items);
 
   if (featuredPost.items.length > 0) {
     const excludedPosts = featuredPost.items.map(item => item.id);
