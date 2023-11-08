@@ -4,7 +4,9 @@ import {
   LabeledPost,
   LabeledPostProps,
   LabelList,
-  LatestPost
+  LatestPost,
+  RelatedPost,
+  RelatedPostProps
 } from '@containers';
 
 interface SiteWidgetProps {
@@ -32,6 +34,13 @@ function Component({ type, show, title, data }: SiteWidgetProps) {
       return <LabelList title={title} />;
     case 'latest-post':
       return <LatestPost title={title} />;
+    case 'related-post':
+      return (
+        <RelatedPost
+          title={title}
+          label={(data as RelatedPostProps)?.label || ''}
+        />
+      );
     default:
       return null;
   }

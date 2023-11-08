@@ -86,6 +86,7 @@ export type AppConfig = {
         title: string;
         type: string;
         show: boolean;
+        data: unknown;
       }>;
     };
   };

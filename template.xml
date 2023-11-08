@@ -14,7 +14,7 @@
       <b:skin><![CDATA[]]>
       </b:skin>
     </b:if>
-    <style>/*                  <![CDATA[*//*! main.css *//*]]>*/
+    <style>/*                        <![CDATA[*//*! main.css *//*]]>*/
     </style>
     <b:defaultmarkups>
       <b:defaultmarkup type="All">
@@ -146,6 +146,6 @@
     <b:if cond="data:view.isLayoutMode">
       <b:section id="main"></b:section>
     </b:if>
-    <div id="root" data-config="3190947245348881579"></div>
+    <div id="root" data-config-url="https://raw.githubusercontent.com/itokun99/itokun99/main/react-template-blogger/configs/3190947245348881579/config.json"></div>
   </body>
 </html>

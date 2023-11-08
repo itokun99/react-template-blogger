@@ -23,14 +23,19 @@ function PostDetail() {
 
   const config = useConfig();
   const section = config.data?.sectionConfig?.postDetail;
-  // const top = section?.top || [];
-  // const main = section?.main || [];
   const side = section?.side || [];
 
   const query = usePostDetail({ id, byPath: true });
   const datePublished = query.data?.published
     ? `Published on ${formatDate(query.data.published, 'MMM DD, YYYY')}`
     : '';
+
+  const authorData = query.data?.author
+    ? {
+        ...createAuthorDataFromPost(query.data.author),
+        subtitle: datePublished
+      }
+    : { title: 'Anonim', subtitle: datePublished, image: '' };
 
   return (
     <ContentLayout
@@ -39,23 +44,19 @@ function PostDetail() {
         <Content
           loading={query.isLoading}
           title={query.data?.title || ''}
-          author={
-            query.data?.author
-              ? {
-                  ...createAuthorDataFromPost(query.data.author),
-                  subtitle: datePublished
-                }
-              : { title: 'Anonim', subtitle: datePublished, image: '' }
-          }
+          author={authorData}
           breadcrumb={query.breadCrumb}
           content={query.data?.content || ''}
         />
       }
       side={
         <>
-          {side.map(v => (
-            <SiteWidget key={v.id} {...v} />
-          ))}
+          {side.map(v => {
+            if (v.type === 'related-post') {
+              v.data = { label: query.breadCrumb[0]?.title || '' };
+            }
+            return <SiteWidget key={v.id} {...v} />;
+          })}
         </>
       }
       stickySide

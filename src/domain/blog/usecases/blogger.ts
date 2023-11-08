@@ -40,7 +40,10 @@ async function getFeaturedPosts() {
   return res.data;
 }
 
-async function getPostsByLabel(label: string | string[]) {
+async function getPostsByLabel(
+  label: string | string[],
+  requestParams?: BloggerRequestParams
+) {
   const { blogId, apiKey, authors } = appStoreUsecase.getBloggerCredential();
 
   if (!apiKey || !blogId) {
@@ -59,7 +62,8 @@ async function getPostsByLabel(label: string | string[]) {
     fetchBodies: false,
     fetchImages: true,
     orderBy: 'updated',
-    labels
+    labels,
+    ...requestParams
   });
 
   res.data = transformPosts(res.data, authors);
