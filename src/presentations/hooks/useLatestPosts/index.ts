@@ -20,8 +20,6 @@ export default function useLatestPosts() {
   let items: Post[] = [];
   pages.forEach(page => page.items.forEach(item => items.push(item)));
 
-  console.log('items ==>', items);
-
   if (featuredPost.items.length > 0) {
     const excludedPosts = featuredPost.items.map(item => item.id);
     items = items.filter(item => !excludedPosts.includes(item.id));

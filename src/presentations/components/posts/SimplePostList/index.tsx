@@ -3,29 +3,37 @@ import { Post } from '@domain';
 import { ListItem } from '@components';
 import { Container, SectionTitle } from '@components';
 
-export interface SimplePostItem {
-  id: number;
-  title: string;
-  subtitle?: string;
-  image?: string;
-  url?: string;
-}
-
 export interface SimplePostListProps {
   title?: string | React.ReactNode;
   items: Post[];
+  loading?: boolean;
 }
 
-function Component({ title, items }: SimplePostListProps) {
-  return (
-    <div className="c-simple-post-list">
-      <Container className="px-0 sm:px-6">
-        <SectionTitle title={title || 'Post List'} />
+function Component({ title, items, loading }: SimplePostListProps) {
+  function renderItems() {
+    if (loading) {
+      return (
         <div className="sm:px-0">
-          {items.map(item => (
-            <ListItem key={item.id} title={item.title} url={item.to} />
+          {[1, 2, 3].map(item => (
+            <ListItem key={item} loading />
           ))}
         </div>
+      );
+    }
+    return (
+      <div className="sm:px-0">
+        {items.map(item => (
+          <ListItem key={item.id} title={item.title} url={item.to} />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="c-simple-post-list mb-6">
+      <Container className="px-0 sm:px-6">
+        <SectionTitle title={title || 'Post List'} />
+        {renderItems()}
       </Container>
     </div>
   );

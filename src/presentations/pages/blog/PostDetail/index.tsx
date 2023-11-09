@@ -1,25 +1,11 @@
-import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
 import { SiteWidget } from '@containers';
 import { Content } from '@components';
-import { usePostDetail, useConfig } from '@hooks';
+import { usePostDetail, useConfig, usePostDetailParams } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
 import { ContentLayout } from '@layouts';
 
 function PostDetail() {
-  const params = useParams();
-
-  const year = params.year;
-  const month = params.month;
-  const title = params.title;
-
-  const id = useMemo(() => {
-    if (year && month && title) {
-      return `/${year}/${month}/${title}.html`;
-    }
-
-    return '';
-  }, [year, month, title]);
+  const { id } = usePostDetailParams();
 
   const config = useConfig();
   const section = config.data?.sectionConfig?.postDetail;
@@ -53,7 +39,10 @@ function PostDetail() {
         <>
           {side.map(v => {
             if (v.type === 'related-post') {
-              v.data = { label: query.breadCrumb[0]?.title || '' };
+              v.data = {
+                label: query.breadCrumb[0]?.title || '',
+                loading: query.isLoading
+              };
             }
             return <SiteWidget key={v.id} {...v} />;
           })}

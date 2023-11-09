@@ -9,7 +9,7 @@ export const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route path="/search" element={<Search />} />
-      <Route path="/blog/:year/:month/:title" element={<PostDetail />} />
+      <Route path="/:year/:month/:title" element={<PostDetail />} />
       <Route path="/" element={<Home />} errorElement={<div>Test Error</div>} />
     </Route>
   )

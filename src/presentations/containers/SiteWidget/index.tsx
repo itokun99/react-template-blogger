@@ -35,12 +35,7 @@ function Component({ type, show, title, data }: SiteWidgetProps) {
     case 'latest-post':
       return <LatestPost title={title} />;
     case 'related-post':
-      return (
-        <RelatedPost
-          title={title}
-          label={(data as RelatedPostProps)?.label || ''}
-        />
-      );
+      return <RelatedPost title={title} {...(data as RelatedPostProps)} />;
     default:
       return null;
   }

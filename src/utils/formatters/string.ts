@@ -37,7 +37,10 @@ export function removeHtmlTags(
  * @param inputString url string e.g https://codepelajar.blogspot.com/service.html
  * @returns relative path string e.g /services
  */
-export function removeDomainAndSubdomain(inputString: string) {
+export function removeDomainAndSubdomain(
+  inputString: string,
+  removeHtml = false
+) {
   // Match the protocol and capture the domain, file path (if present), and subdomain
   const pattern = /https?:\/\/(www\d?\.)?([^/]+)(\/[^?#]*)?/i;
   // Replace the matched pattern with just the file path or subdomain
@@ -51,8 +54,13 @@ export function removeDomainAndSubdomain(inputString: string) {
       }
     }
   );
+
+  if (removeHtml) {
+    return result.replace(/\.html$/i, '');
+  }
+
   // Remove .html from the result
-  return result.replace(/\.html$/i, '');
+  return result;
 }
 
 /**

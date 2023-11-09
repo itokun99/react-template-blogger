@@ -9,6 +9,7 @@ import usePostDetail from './usePostDetail';
 import useSearchPost from './useSearchPost';
 import { useMediaQuery } from './useMediaQuery';
 import { useDebounce } from './useDebounce';
+import usePostDetailParams from './usePostDetailParams';
 
 export {
   useBlog,
@@ -21,5 +22,6 @@ export {
   useMediaQuery,
   useLabelList,
   usePostDetail,
-  useDebounce
+  useDebounce,
+  usePostDetailParams
 };

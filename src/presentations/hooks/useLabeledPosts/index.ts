@@ -6,12 +6,14 @@ interface Config {
   label: string | string[];
   showBody?: boolean;
   showImage?: boolean;
+  excludes?: string[];
 }
 
 export default function useLabeledPosts({
   label,
   showBody,
-  showImage = true
+  showImage = true,
+  excludes = []
 }: Config) {
   const { config } = useBlog();
   const query = useQuery({
@@ -24,7 +26,11 @@ export default function useLabeledPosts({
     enabled: config.isEnableQueries && Boolean(label)
   });
 
-  const items = query.data?.items || [];
+  let items = query.data?.items || [];
+
+  if (excludes && excludes.length > 0) {
+    items = items.filter(item => !excludes.includes(item.id));
+  }
 
   return {
     ...query,

@@ -1,5 +1,5 @@
 import { Posts, AppConfig } from '@domain';
-import { removeDomainAndSubdomain, removeHtmlTags } from '@utils';
+import { removeDomainAndSubdomain, removeHtmlTags, getConfig } from '@utils';
 
 export function transformPostLabel(labels: Posts['items'][0]['labels']) {
   if (labels && labels.length > 0) {
@@ -13,7 +13,11 @@ export function transformPostLabel(labels: Posts['items'][0]['labels']) {
 }
 
 export function createPostUrl(url: string) {
-  return `/blog${removeDomainAndSubdomain(url)}`;
+  if (getConfig().isBlogger) {
+    return `${removeDomainAndSubdomain(url, false)}`;
+  }
+
+  return `${removeDomainAndSubdomain(url, true)}`;
 }
 
 export function transformPostAuthor(

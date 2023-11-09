@@ -14,7 +14,7 @@
       <b:skin><![CDATA[]]>
       </b:skin>
     </b:if>
-    <style>/*                        <![CDATA[*//*! main.css *//*]]>*/
+    <style>/*                              <![CDATA[*//*! main.css *//*]]>*/
     </style>
     <b:defaultmarkups>
       <b:defaultmarkup type="All">
@@ -141,11 +141,13 @@
         <b:includable id="feeds"/>
       </b:defaultmarkup>
     </b:defaultmarkups>
-  </head>
-  <body>
-    <b:if cond="data:view.isLayoutMode">
-      <b:section id="main"></b:section>
-    </b:if>
-    <div id="root" data-config-url="https://raw.githubusercontent.com/itokun99/itokun99/main/react-template-blogger/configs/3190947245348881579/config.json"></div>
-  </body>
-</html>
+    <script type="text/" crossorigin src="https://raw.githubusercontent.com/itokun99/react-template-blogger/main/dist/assets/index-0c7cea06.js"></script>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/itokun99/react-template-blogger/main/dist/assets/index-bb6ea559.css">
+    </head>
+    <body>
+      <b:if cond="data:view.isLayoutMode">
+        <b:section id="main"></b:section>
+      </b:if>
+      <div id="root" data-config-origin="blogger" data-config-url="https://raw.githubusercontent.com/itokun99/itokun99/main/react-template-blogger/configs/3190947245348881579/config.json"></div>
+    </body>
+  </html>

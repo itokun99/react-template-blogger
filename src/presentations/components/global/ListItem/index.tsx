@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import { Image } from '@components';
 
 interface ListItemProps {
@@ -7,11 +8,30 @@ interface ListItemProps {
   subtitle?: string | React.ReactNode;
   image?: string;
   url?: string;
+  className?: string;
+  loading?: boolean;
 }
 
-function Component({ title, subtitle, image, url }: ListItemProps) {
-  return (
-    <div className="c-list-item mb-4 border border-slate-300 p-4">
+function Component({
+  title,
+  subtitle,
+  image,
+  url,
+  className,
+  loading
+}: ListItemProps) {
+  const wrapperClasses = React.useMemo(
+    () =>
+      clsx(
+        'c-list-item',
+        'mb-2 block border border-slate-300 px-2 py-2',
+        className
+      ),
+    [className]
+  );
+
+  function renderContent() {
+    return (
       <div className="flex gap-2">
         {image && (
           <Image
@@ -22,15 +42,31 @@ function Component({ title, subtitle, image, url }: ListItemProps) {
         )}
         <div className="flex-1">
           {title && (
-            <Link to={url as string}>
-              <h3 className="text-sm font-bold text-slate-700">{title}</h3>
-            </Link>
+            <h3 className="text-xs font-semibold text-slate-700">{title}</h3>
           )}
           {subtitle && <p className="text-xs text-slate-700">{subtitle}</p>}
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="mb-4">
+        <div className="mb-2 h-4 w-full rounded-full bg-slate-300"></div>
+        <div className="h-4 w-8/12 rounded-full bg-slate-300"></div>
+      </div>
+    );
+  }
+
+  if (url)
+    return (
+      <Link to={url} className={wrapperClasses}>
+        {renderContent()}
+      </Link>
+    );
+
+  return <div className={wrapperClasses}>{renderContent()}</div>;
 }
 
 export const ListItem = React.memo(Component);
