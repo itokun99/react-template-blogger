@@ -1,5 +1,11 @@
 import { BLOGGER_API_ENDPOINTS, httpClient } from '@core';
-import { BlogInfo, Posts, BloggerRequestParams, Pages } from '../entities';
+import {
+  BlogInfo,
+  Posts,
+  Comments,
+  BloggerRequestParams,
+  Pages
+} from '../entities';
 
 function blogInfo(blogId: string, apiKey: string) {
   return httpClient.get<BlogInfo>(BLOGGER_API_ENDPOINTS.blog(blogId), {
@@ -65,12 +71,30 @@ function searchPosts(
   });
 }
 
+function getComments(
+  blogId: string,
+  postId: string,
+  apiKey: string,
+  params?: BloggerRequestParams
+) {
+  return httpClient.get<Comments>(
+    BLOGGER_API_ENDPOINTS.comments(blogId, postId),
+    {
+      params: {
+        ...params,
+        key: apiKey
+      }
+    }
+  );
+}
+
 const bloggerRepository = {
   blogInfo,
   getPost,
   getPosts,
   getPages,
-  searchPosts
+  searchPosts,
+  getComments
 };
 
 export default bloggerRepository;

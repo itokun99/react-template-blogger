@@ -76,7 +76,7 @@ function Component({ label, title }: LabeledPostProps) {
     <Container className="px-0 sm:px-6">
       <SectionTitle title={title || String(label) || 'Post by Category'} />
       <div className="sm:px-0">{renderContent()}</div>
-      <div className="mb-6 w-full border-b border-slate-300"></div>
+      <div className="mb-6 w-full border-b border-slate-300 sm:mb-0 sm:border-0"></div>
     </Container>
   );
 }

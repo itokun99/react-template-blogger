@@ -11,7 +11,9 @@ export const BLOGGER_API_ENDPOINTS = {
   pages: (blogId: string) =>
     `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/pages`,
   users: (blogId: string) =>
-    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/users`
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/users`,
+  comments: (blogId: string, postId: string) =>
+    `${APP_CONFIG.blogger.apiUrl}/blogs/${blogId}/posts/${postId}/comments`
 };
 
 export const BLOGGER_FEED_ENDPOINTS = {

@@ -64,8 +64,10 @@ function Component({
           <button
             className={clsx(
               'c-multi-select',
-              'mb-2 mr-2 inline-block border border-slate-300 px-2 py-1 text-xs text-slate-700',
-              isSelected ? 'border-slate-700 font-semibold' : ''
+              'mb-2 mr-2 inline-block border border-slate-300 px-2 py-1 text-xs text-slate-700 duration-150 hover:border-slate-700 hover:bg-slate-700 hover:text-white',
+              isSelected
+                ? 'border-slate-700 bg-slate-700 font-semibold text-white'
+                : ''
             )}
             name={name}
             key={option.id}

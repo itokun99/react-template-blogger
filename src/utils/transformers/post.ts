@@ -1,4 +1,4 @@
-import { Posts, AppConfig } from '@domain';
+import { Posts, AppConfig, Comments } from '@domain';
 import { removeDomainAndSubdomain, removeHtmlTags, getConfig } from '@utils';
 
 export function transformPostLabel(labels: Posts['items'][0]['labels']) {
@@ -84,9 +84,28 @@ export function transformPost(
   return post;
 }
 
+export function transformComment(
+  post: Comments['items'][0],
+  authors: AppConfig['author']
+) {
+  if (post.author) post.author = transformPostAuthor(post.author, authors);
+  return post;
+}
+
 export function transformPosts(data: Posts, authors: AppConfig['author']) {
   if (data?.items?.length > 0) {
     data.items = data.items.map(post => transformPost(post, authors));
+  }
+
+  return data;
+}
+
+export function transformComments(
+  data: Comments,
+  authors: AppConfig['author']
+) {
+  if (data?.items?.length > 0) {
+    data.items = data.items.map(post => transformComment(post, authors));
   }
 
   return data;

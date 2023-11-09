@@ -21,7 +21,7 @@ function Component({ title, items, loading }: SimplePostListProps) {
       );
     }
     return (
-      <div className="sm:px-0">
+      <div className="px-6 sm:px-0">
         {items.map(item => (
           <ListItem key={item.id} title={item.title} url={item.to} />
         ))}

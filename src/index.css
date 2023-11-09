@@ -7,57 +7,57 @@
     @apply bg-white;
   }
 
-  .c-content-body {
+  .inner-html {
     @apply text-base text-slate-700;
   }
 
-  .c-content-body h1 {
+  .inner-html h1 {
     @apply mb-2 text-2xl font-bold;
   }
 
-  .c-content-body h2 {
+  .inner-html h2 {
     @apply mb-2 text-xl font-bold;
   }
 
-  .c-content-body h3 {
+  .inner-html h3 {
     @apply mb-2 text-lg font-bold;
   }
 
-  .c-content-body h4 {
+  .inner-html h4 {
     @apply mb-2 text-base font-bold;
   }
 
-  .c-content-body h5 {
+  .inner-html h5 {
     @apply mb-2 text-sm font-bold;
   }
 
-  .c-content-body h6 {
+  .inner-html h6 {
     @apply mb-2 text-xs font-bold;
   }
 
-  .c-content-body p {
+  .inner-html p {
     @apply mb-6 leading-7;
   }
 
-  .c-content-body img {
+  .inner-html img {
     @apply !mb-6;
   }
 
-  .c-content-body pre {
+  .inner-html pre {
     max-width: 100%;
     overflow-x: auto;
     @apply my-6 border border-slate-300 bg-slate-100 p-4 font-mono text-sm text-slate-700 sm:p-6;
   }
 
-  .c-content-body blockquote {
+  .inner-html blockquote {
     @apply mb-6 border-l border-slate-300 bg-slate-100 p-4 text-slate-700 sm:p-6;
   }
 
-  .c-content-body a {
+  .inner-html a {
     @apply text-sky-600;
   }
 
-  .c-content-body kbd {
+  .inner-html kbd {
     @apply border border-slate-300 px-2 py-1 font-mono text-xs font-semibold;
   }
 }

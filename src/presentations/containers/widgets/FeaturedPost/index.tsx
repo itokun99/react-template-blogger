@@ -38,7 +38,7 @@ function Component({ title }: FeaturedPostProps) {
     <Container className="px-0 sm:px-6">
       <SectionTitle title={title || 'Featured Post'} />
       <div className="px-6 sm:px-0">{renderContent()}</div>
-      <div className="mb-6 w-full border-b border-slate-300 pb-6"></div>
+      <div className="mb-6 w-full border-b border-slate-300 pb-6 sm:mb-0 sm:border-0"></div>
     </Container>
   );
 }

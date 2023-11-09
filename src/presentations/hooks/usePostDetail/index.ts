@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { bloggerUsecase } from '@domain';
-import { useBlog } from '@hooks';
+import { useBlog, useComments } from '@hooks';
 import { useMemo } from 'react';
 
 interface Option {
@@ -20,6 +20,8 @@ export default function usePostDetail(option: Option) {
 
   const data = query.data;
 
+  const commentQuery = useComments({ postId: data?.id || '' });
+
   const labels = useMemo(() => data?.labels || [], [data?.labels]);
   const title = data?.title || '';
 
@@ -34,8 +36,11 @@ export default function usePostDetail(option: Option) {
     return result;
   }, [labels, title]);
 
+  const comments = commentQuery.data?.items || [];
+
   return {
     ...query,
+    comments,
     breadCrumb
   };
 }

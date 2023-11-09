@@ -33,6 +33,7 @@ function PostDetail() {
           author={authorData}
           breadcrumb={query.breadCrumb}
           content={query.data?.content || ''}
+          comments={query.comments || []}
         />
       }
       side={

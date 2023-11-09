@@ -12,7 +12,15 @@ export interface BloggerRequestParams {
   endDate?: string;
   sortOption?: 'descending' | 'ascending';
   startDate?: string;
-  status?: 'draft' | 'live' | 'scheduled' | 'imported';
+  status?:
+    | 'draft'
+    | 'live'
+    | 'scheduled'
+    | 'imported'
+    | 'emptied'
+    | 'live'
+    | 'pending'
+    | 'spam';
   view?: 'ADMIN' | 'AUTHOR' | 'READER';
   maxComments?: string | number;
   fields?: string;
@@ -83,3 +91,28 @@ interface ImageType {
 }
 
 export type Pages = Posts;
+
+export interface Comments {
+  kind: string;
+  items: CommentItem[];
+  etag: string;
+}
+
+export interface CommentItem {
+  kind: string;
+  id: string;
+  post: {
+    id: string;
+  };
+  blog: {
+    id: string;
+  };
+  published: string;
+  updated: string;
+  selfLink: string;
+  content: string;
+  author: Author;
+  inReplyTo?: {
+    id: string;
+  };
+}

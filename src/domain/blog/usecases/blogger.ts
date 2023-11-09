@@ -6,7 +6,8 @@ import {
 import {
   transformPosts,
   transformPost,
-  createGroupAndCountLabels
+  createGroupAndCountLabels,
+  transformComments
 } from '@utils';
 
 async function getInfo() {
@@ -192,6 +193,25 @@ async function searchPostsByQueryAndLabels(q: string, labels: string) {
   return res.data;
 }
 
+async function getPostComments(postId: string, params?: BloggerRequestParams) {
+  const { blogId, apiKey, authors } = appStoreUsecase.getBloggerCredential();
+  if (!apiKey || !blogId) {
+    throw new Error('invalid credential');
+  }
+
+  const res = await bloggerRepository.getComments(blogId, postId, apiKey, {
+    maxResults: 500,
+    fetchBodies: true,
+    fetchImages: true,
+    ...params
+  });
+
+  res.data = transformComments(res.data, authors);
+
+  console.log('bloggerUseCase / getPostComments ==>', res);
+  return res.data;
+}
+
 const bloggerUsecase = {
   getInfo,
   getFeaturedPosts,
@@ -200,6 +220,7 @@ const bloggerUsecase = {
   getAllLabels,
   getPostDetail,
   getPostDetailByPath,
+  getPostComments,
   searchPostsByQueryAndLabels
 };
 

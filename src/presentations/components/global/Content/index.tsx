@@ -1,13 +1,15 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
 import Header from './components/Header';
-import { Container } from '@components';
+import { Container, Comment } from '@components';
+import { CommentItem } from '@domain';
 
 interface ContentProps {
   breadcrumb: { title: string; url: string; id: number }[];
   loading?: boolean;
   content: string;
   title: string;
+  comments?: CommentItem[];
   author: {
     title: string;
     subtitle: string;
@@ -20,7 +22,8 @@ function Component({
   author,
   breadcrumb,
   loading,
-  content
+  content,
+  comments = []
 }: ContentProps) {
   return (
     <div className="c-content">
@@ -40,12 +43,13 @@ function Component({
           </div>
         ) : (
           <div
-            className="c-content-body mb-14"
+            className="c-content-body inner-html mb-14"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(content)
             }}
           />
         )}
+        <Comment items={comments} />
       </Container>
     </div>
   );

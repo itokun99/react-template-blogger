@@ -19,7 +19,7 @@ function Component({ title, url, className, loading }: HashtagProps) {
     () =>
       clsx(
         'c-hastag',
-        'mb-1 mr-2 inline-block text-xs font-bold text-slate-700',
+        'mb-1 mr-2 inline-block text-xs font-semibold text-slate-700',
         className
       ),
     [className]

@@ -30,7 +30,7 @@ function Component({ title }: LabelListProps) {
             key={item.id}
             title={`${item.title} (${item.count})`}
             url={item.url}
-            className="mb-2 border border-slate-300 px-2 py-1 text-sm"
+            className="mb-2 border border-slate-300 px-2 py-1 text-sm transition-colors duration-150 hover:border-slate-700 hover:bg-slate-700 hover:text-white"
           />
         ))}
       </div>

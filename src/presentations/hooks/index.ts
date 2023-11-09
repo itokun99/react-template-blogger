@@ -10,6 +10,7 @@ import useSearchPost from './useSearchPost';
 import { useMediaQuery } from './useMediaQuery';
 import { useDebounce } from './useDebounce';
 import usePostDetailParams from './usePostDetailParams';
+import useComments from './useComments';
 
 export {
   useBlog,
@@ -23,5 +24,6 @@ export {
   useLabelList,
   usePostDetail,
   useDebounce,
-  usePostDetailParams
+  usePostDetailParams,
+  useComments
 };
