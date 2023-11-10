@@ -11,4 +11,3 @@ export { Container, Button, Image, Hashtag, SectionTitle, BreadCrumb, Content };
 export * from './BreadCrumb';
 export * from './ListItem';
 export * from './Comment';
-export * from './CommentItem';

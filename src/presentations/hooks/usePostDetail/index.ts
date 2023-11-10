@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { bloggerUsecase } from '@domain';
-import { useBlog, useComments } from '@hooks';
+import { useBlog } from '@hooks';
 import { useMemo } from 'react';
+import { formatDate, createAuthorDataFromPost } from '@utils';
 
 interface Option {
   id: string;
@@ -20,8 +21,6 @@ export default function usePostDetail(option: Option) {
 
   const data = query.data;
 
-  const commentQuery = useComments({ postId: data?.id || '' });
-
   const labels = useMemo(() => data?.labels || [], [data?.labels]);
   const title = data?.title || '';
 
@@ -36,11 +35,20 @@ export default function usePostDetail(option: Option) {
     return result;
   }, [labels, title]);
 
-  const comments = commentQuery.data?.items || [];
+  const datePublished = query.data?.published
+    ? `Published on ${formatDate(query.data.published, 'MMM DD, YYYY')}`
+    : '';
+
+  const author = query.data?.author
+    ? {
+        ...createAuthorDataFromPost(query.data.author),
+        subtitle: datePublished
+      }
+    : { title: 'Anonim', subtitle: datePublished, image: '' };
 
   return {
     ...query,
-    comments,
+    author,
     breadCrumb
   };
 }

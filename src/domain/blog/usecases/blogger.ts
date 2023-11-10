@@ -200,7 +200,7 @@ async function getPostComments(postId: string, params?: BloggerRequestParams) {
   }
 
   const res = await bloggerRepository.getComments(blogId, postId, apiKey, {
-    maxResults: 500,
+    maxResults: 100,
     fetchBodies: true,
     fetchImages: true,
     ...params

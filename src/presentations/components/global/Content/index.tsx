@@ -1,15 +1,13 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
 import Header from './components/Header';
-import { Container, Comment } from '@components';
-import { CommentItem } from '@domain';
+import { Container } from '@components';
 
 interface ContentProps {
   breadcrumb: { title: string; url: string; id: number }[];
   loading?: boolean;
   content: string;
   title: string;
-  comments?: CommentItem[];
   author: {
     title: string;
     subtitle: string;
@@ -22,8 +20,7 @@ function Component({
   author,
   breadcrumb,
   loading,
-  content,
-  comments = []
+  content
 }: ContentProps) {
   return (
     <div className="c-content">
@@ -49,7 +46,6 @@ function Component({
             }}
           />
         )}
-        <Comment items={comments} />
       </Container>
     </div>
   );

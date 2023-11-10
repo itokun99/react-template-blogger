@@ -6,7 +6,10 @@ import {
   LabelList,
   LatestPost,
   RelatedPost,
-  RelatedPostProps
+  RelatedPostProps,
+  BloggerComment,
+  BloggerPostDetail,
+  BloggerCommentProps
 } from '@containers';
 
 interface SiteWidgetProps {
@@ -36,6 +39,10 @@ function Component({ type, show, title, data }: SiteWidgetProps) {
       return <LatestPost title={title} />;
     case 'related-post':
       return <RelatedPost title={title} {...(data as RelatedPostProps)} />;
+    case 'blogger-comment':
+      return <BloggerComment {...(data as BloggerCommentProps)} />;
+    case 'blogger-post-detail':
+      return <BloggerPostDetail />;
     default:
       return null;
   }

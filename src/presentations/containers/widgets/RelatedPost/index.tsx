@@ -3,16 +3,15 @@ import { SimplePostList } from '@components';
 import { useLabeledPosts, usePostDetail, usePostDetailParams } from '@hooks';
 
 export interface RelatedPostProps {
-  label: string | string[];
   title?: string | React.ReactNode;
-  loading?: boolean;
 }
 
-function Component({ label, title, loading }: RelatedPostProps) {
+function Component({ title }: RelatedPostProps) {
   const { id } = usePostDetailParams();
   const queryDetail = usePostDetail({ id, byPath: true });
+
   const query = useLabeledPosts({
-    label,
+    label: queryDetail?.breadCrumb?.[0]?.title,
     showImage: false,
     excludes: queryDetail.data?.id ? [queryDetail.data?.id] : []
   });
@@ -20,7 +19,7 @@ function Component({ label, title, loading }: RelatedPostProps) {
   return (
     <SimplePostList
       title={title || 'Related Post'}
-      loading={loading || query.isLoading}
+      loading={queryDetail.isLoading || query.isLoading}
       items={query.items}
     />
   );
