@@ -105,7 +105,13 @@ export function transformComments(
   authors: AppConfig['author']
 ) {
   if (data?.items?.length > 0) {
-    data.items = data.items.map(post => transformComment(post, authors));
+    data.items = data.items.map(post => {
+      if (post.inReplyTo) {
+        // const parentComment = data?.items.filter(item => item?.id === )
+      }
+
+      return transformComment(post, authors);
+    });
   }
 
   return data;

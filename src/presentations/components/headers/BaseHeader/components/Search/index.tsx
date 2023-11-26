@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiSearch } from 'react-icons/fi';
+import { Icon } from '@components';
 
 function Component() {
   return (
     <div className="c-base-header-search flex items-center">
       <Link to="/search" className="flex h-6 w-6 items-center justify-center">
-        <FiSearch className="text-lg !text-slate-600" />
+        <Icon name='search' className="text-lg !text-slate-600" />
       </Link>
     </div>
   );

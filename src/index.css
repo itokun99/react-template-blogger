@@ -11,28 +11,56 @@
     @apply text-base text-slate-700;
   }
 
+  .inner-html.small-text {
+    @apply text-sm;
+  }
+
   .inner-html h1 {
     @apply mb-2 text-2xl font-bold;
+  }
+
+  .inner-html.small-text h1 {
+    @apply text-xl;
   }
 
   .inner-html h2 {
     @apply mb-2 text-xl font-bold;
   }
 
+  .inner-html.small-text h2 {
+    @apply text-lg;
+  }
+
   .inner-html h3 {
     @apply mb-2 text-lg font-bold;
+  }
+
+  .inner-html.small-text h3 {
+    @apply text-base;
   }
 
   .inner-html h4 {
     @apply mb-2 text-base font-bold;
   }
 
+  .inner-html.small-text h4 {
+    @apply text-sm;
+  }
+
   .inner-html h5 {
     @apply mb-2 text-sm font-bold;
   }
 
+  .inner-html.small-text h5 {
+    @apply text-xs;
+  }
+
   .inner-html h6 {
     @apply mb-2 text-xs font-bold;
+  }
+
+  .inner-html.small-text h6 {
+    @apply text-[0.5rem];
   }
 
   .inner-html p {

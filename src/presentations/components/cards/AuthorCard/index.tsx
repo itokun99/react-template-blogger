@@ -7,9 +7,19 @@ export interface AuthorCardProps {
   subtitle?: string;
   image?: string;
   loading?: boolean;
+  withAnchor?: boolean;
+  anchor?: string;
 }
 
-function Component({ title, subtitle, image, loading }: AuthorCardProps) {
+function Component({
+  title,
+  subtitle,
+  image,
+  loading,
+  withAnchor,
+  anchor
+}: AuthorCardProps) {
+  console.log('asdasdsada');
   return (
     <div className="c-author-card">
       <div className="flex gap-2">
@@ -18,9 +28,15 @@ function Component({ title, subtitle, image, loading }: AuthorCardProps) {
           alt={title}
           title={title}
           loading={loading}
-          className="h-9 w-9 overflow-hidden rounded-full"
+          className="test h-9 w-9 overflow-hidden rounded-full"
         />
-        <Content title={title} subtitle={subtitle} loading={loading} />
+        <Content
+          anchor={anchor}
+          withAnchor={withAnchor}
+          title={title}
+          subtitle={subtitle}
+          loading={loading}
+        />
       </div>
     </div>
   );
