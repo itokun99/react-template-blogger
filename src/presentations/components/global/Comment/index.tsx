@@ -43,8 +43,8 @@ function Component({ id, author, content, date }: CommentProps) {
               },
               {
                 id: 2,
-                title: "Menu 2",
-                url: 'Copy Link'
+                title: "Copy Link",
+                url: '#'
               }
             ]} >
               <Icon name='menu' className="!text-slate-700" />
