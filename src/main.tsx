@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom/client';
 import { App } from '@apps';
 
+
+
 const rootEl = document.getElementById('root');
 const dataConfigUrl = rootEl?.getAttribute('data-config-url');
 const dataIsBlogger = rootEl?.getAttribute('data-is-blogger') === 'true';

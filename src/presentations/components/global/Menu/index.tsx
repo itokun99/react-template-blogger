@@ -38,11 +38,11 @@ function Component({ items = [], children, className }: MenuProps) {
       >
         <BaseMenu.Items
           as="ul"
-          className="absolute z-10 right-0 divide-y divide-slate-300 border border-slate-300 bg-white"
+          className="absolute right-0 z-10 divide-y divide-slate-300 border border-slate-300 bg-white"
         >
-          {items.map(item => {
+          {items.map((item, i) => {
             return (
-              <BaseMenu.Item as={React.Fragment}>
+              <BaseMenu.Item key={i} as={React.Fragment}>
                 {() => (
                   <MenuItem
                     onClick={item.onClick}

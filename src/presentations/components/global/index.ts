@@ -13,3 +13,5 @@ export * from './ListItem';
 export * from './Comment';
 export * from './Menu';
 export * from './Icon';
+export * from './CommentForm';
+export * from './Dialog';

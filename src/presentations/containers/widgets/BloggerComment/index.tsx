@@ -1,13 +1,16 @@
 import React from 'react';
-import { Comment } from '@components';
+import { createPortal } from 'react-dom';
+import { Comment, CommentForm, Dialog, useDialog } from '@components';
 import { useComments, usePostDetail, usePostDetailParams } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
 
 function Component() {
   const { id } = usePostDetailParams();
+  const dialog = useDialog();
   const queryDetail = usePostDetail({ id, byPath: true });
   const query = useComments({ postId: queryDetail.data?.id || '' });
   const items = query.data?.items || [];
+  const totalComments = queryDetail.data?.replies?.totalItems || 0;
 
   function renderItems() {
     if (query.isLoading) {
@@ -16,6 +19,10 @@ function Component() {
 
     return (
       <>
+        <div className="mb-4">
+          <p className="text-lg font-bold text-slate-700">{`Total Comments (${totalComments})`}</p>
+        </div>
+
         {items.map(comment => {
           const author = createAuthorDataFromPost(comment.author);
 
@@ -29,6 +36,14 @@ function Component() {
             />
           );
         })}
+        {createPortal(
+          <Dialog
+            visible={dialog.visible}
+            title={dialog.content.title}
+            description={dialog.content.description}
+          />,
+          document.getElementById('root') || document.body
+        )}
       </>
     );
   }

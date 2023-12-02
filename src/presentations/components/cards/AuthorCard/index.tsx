@@ -19,7 +19,7 @@ function Component({
   withAnchor,
   anchor
 }: AuthorCardProps) {
-  console.log('asdasdsada');
+
   return (
     <div className="c-author-card">
       <div className="flex gap-2">

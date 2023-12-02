@@ -23,6 +23,7 @@ interface Blogger {
 interface Google {
   apiKey: string;
   cse: Cse;
+  firebase: FirebaseConfig;
 }
 
 interface Cse {
@@ -85,4 +86,13 @@ interface SectionType<T = unknown> {
   type: string;
   show: boolean;
   data?: T;
+}
+
+interface FirebaseConfig {
+  apiKey: string
+  authDomain: string
+  projectId: string
+  storageBucket: string
+  messagingSenderId: string
+  appId: string
 }
