@@ -1,16 +1,31 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
-import { Comment, CommentForm, Dialog, useDialog } from '@components';
+import { useInView } from 'react-intersection-observer';
+import { Comment, CommentForm } from '@components';
+
 import { useComments, usePostDetail, usePostDetailParams } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
 
 function Component() {
+  const {} = useInView({
+    triggerOnce: true,
+    delay: 500,
+    initialInView: false,
+    threshold: [0, 0.25, 0.5, 0.75, 1]
+  });
+
   const { id } = usePostDetailParams();
-  const dialog = useDialog();
   const queryDetail = usePostDetail({ id, byPath: true });
   const query = useComments({ postId: queryDetail.data?.id || '' });
   const items = query.data?.items || [];
   const totalComments = queryDetail.data?.replies?.totalItems || 0;
+
+  function renderTop() {
+    return (
+      <div className="mb-4">
+        <p className="text-lg font-bold text-slate-700">{`Total Comments (${totalComments})`}</p>
+      </div>
+    );
+  }
 
   function renderItems() {
     if (query.isLoading) {
@@ -19,10 +34,6 @@ function Component() {
 
     return (
       <>
-        <div className="mb-4">
-          <p className="text-lg font-bold text-slate-700">{`Total Comments (${totalComments})`}</p>
-        </div>
-
         {items.map(comment => {
           const author = createAuthorDataFromPost(comment.author);
 
@@ -36,19 +47,23 @@ function Component() {
             />
           );
         })}
-        {createPortal(
-          <Dialog
-            visible={dialog.visible}
-            title={dialog.content.title}
-            description={dialog.content.description}
-          />,
-          document.getElementById('root') || document.body
-        )}
       </>
     );
   }
 
-  return <div className="px-6 py-6">{renderItems()}</div>;
+  function renderBottom() {
+    // return <CommentForm />;
+
+    return null;
+  }
+
+  return (
+    <div className="px-6 py-6">
+      {renderTop()}
+      {renderItems()}
+      {renderBottom()}
+    </div>
+  );
 }
 
 export const BloggerComment = React.memo(Component);

@@ -12,15 +12,10 @@ interface CommentProps {
   date: string;
 }
 
-
-
 function Component({ id, author, content, date }: CommentProps) {
-
-
   function onClickReply() {
-    alert("ready to reply message");
+    alert('ready to reply message');
   }
-
 
   return (
     <div id={id} className="c-comment mb-8 border border-slate-300 p-4">
@@ -35,19 +30,21 @@ function Component({ id, author, content, date }: CommentProps) {
         </div>
         <div className="c-comment-header-action ">
           <div className="">
-            <Menu items={[
-              {
-                id: 1,
-                title: "Reply Comment", 
-                onClick: () => onClickReply()
-              },
-              {
-                id: 2,
-                title: "Copy Link",
-                url: '#'
-              }
-            ]} >
-              <Icon name='menu' className="!text-slate-700" />
+            <Menu
+              items={[
+                {
+                  id: 1,
+                  title: 'Reply Comment',
+                  onClick: () => onClickReply()
+                },
+                {
+                  id: 2,
+                  title: 'Copy Link',
+                  url: '#'
+                }
+              ]}
+            >
+              <Icon name="menu" className="!text-slate-700" />
             </Menu>
           </div>
         </div>

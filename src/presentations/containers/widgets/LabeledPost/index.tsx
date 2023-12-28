@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Container, SectionTitle, PostCard } from '@components';
 import { useLabeledPosts, useMediaQuery } from '@hooks';
 import { formatDate, createAuthorDataFromPost, removeHtmlTags } from '@utils';
+import { useIntersect } from '@src/presentations/hooks/useIntersect';
 
 export interface LabeledPostProps {
   label: string | string[];
@@ -12,12 +13,13 @@ export interface LabeledPostProps {
 const loadingArr = [1, 2, 3, 4];
 
 function Component({ label, title }: LabeledPostProps) {
-  const posts = useLabeledPosts({ label });
+  const { ref, inView } = useIntersect();
+  const posts = useLabeledPosts({ label, enabled: inView });
 
   const isSM = useMediaQuery(`(min-width: 640px)`);
 
   const renderItems = () => {
-    if (posts.isLoading) {
+    if (posts.isLoading || !inView) {
       return (
         <>
           {loadingArr.map((v, idx) => (
@@ -73,7 +75,7 @@ function Component({ label, title }: LabeledPostProps) {
   };
 
   return (
-    <Container className="px-0 sm:px-6">
+    <Container ref={ref} className="px-0 sm:px-6">
       <SectionTitle title={title || String(label) || 'Post by Category'} />
       <div className="sm:px-0">{renderContent()}</div>
       <div className="mb-6 w-full border-b border-slate-300 sm:mb-0 sm:border-0"></div>

@@ -7,15 +7,20 @@ interface Config {
   showBody?: boolean;
   showImage?: boolean;
   excludes?: string[];
+  enabled?: boolean;
 }
 
 export default function useLabeledPosts({
   label,
   showBody,
   showImage = true,
-  excludes = []
+  excludes = [],
+  enabled
 }: Config) {
+  const isEnabled = typeof enabled === 'undefined' ? true : enabled;
+
   const { config } = useBlog();
+
   const query = useQuery({
     queryKey: ['labeledPosts', config.apiKey, config.blogId, label],
     queryFn: () =>
@@ -23,7 +28,7 @@ export default function useLabeledPosts({
         fetchBodies: showBody,
         fetchImages: showImage
       }),
-    enabled: config.isEnableQueries && Boolean(label)
+    enabled: isEnabled && config.isEnableQueries && Boolean(label)
   });
 
   let items = query.data?.items || [];

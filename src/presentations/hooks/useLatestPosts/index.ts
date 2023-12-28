@@ -1,16 +1,26 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Post, bloggerUsecase } from '@domain';
 import { useBlog, useFeaturedPosts } from '@hooks';
+import { useMemo } from 'react';
 
-export default function useLatestPosts() {
+interface Option {
+  enabled?: boolean;
+}
+
+const defaultOption = {
+  enabled: true
+};
+
+export default function useLatestPosts(option?: Option) {
+  const opt = useMemo(() => ({ ...defaultOption, ...option }), [option]);
   const { config } = useBlog();
-  const featuredPost = useFeaturedPosts();
+  const featuredPost = useFeaturedPosts({ enabled: opt.enabled });
   const query = useInfiniteQuery({
     queryKey: ['latestPosts', config.apiKey, config.blogId],
     queryFn: ({ pageParam: pageToken }) => {
       return bloggerUsecase.getLatestPosts({ ...(pageToken && { pageToken }) });
     },
-    enabled: config.isEnableQueries,
+    enabled: opt.enabled && config.isEnableQueries,
     getNextPageParam: lastPage => lastPage.nextPageToken,
     initialPageParam: ''
   });
