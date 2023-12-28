@@ -22,3 +22,10 @@ export interface BreadCrumb {
   url: string;
   id: number;
 }
+
+export enum IconNames {
+  search = 'search',
+  menu = 'menu',
+  link = 'link',
+  reply = 'reply'
+}

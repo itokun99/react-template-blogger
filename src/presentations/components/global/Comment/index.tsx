@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { AuthorCard, Icon, Menu } from '@components';
+import { AuthorCard, Button, Icon, Menu } from '@components';
 import DOMPurify from 'dompurify';
+import { IconNames } from '@general-types';
 
 interface CommentProps {
   id: string;
@@ -18,7 +19,7 @@ function Component({ id, author, content, date }: CommentProps) {
   }
 
   return (
-    <div id={id} className="c-comment mb-8 border border-slate-300 p-4">
+    <div id={id} className="c-comment mb-6 border border-slate-300 p-4">
       <div className="c-comment-header mb-4 flex justify-between">
         <div className="c-comment-author">
           <AuthorCard
@@ -34,8 +35,8 @@ function Component({ id, author, content, date }: CommentProps) {
               items={[
                 {
                   id: 1,
-                  title: 'Reply Comment',
-                  onClick: () => onClickReply()
+                  title: 'Report',
+                  onClick: () => {}
                 },
                 {
                   id: 2,
@@ -44,12 +45,12 @@ function Component({ id, author, content, date }: CommentProps) {
                 }
               ]}
             >
-              <Icon name="menu" className="!text-slate-700" />
+              <Icon name={IconNames.menu} className="!text-slate-700" />
             </Menu>
           </div>
         </div>
       </div>
-      <div className="c-comment-body">
+      <div className="c-comment-body pb-6">
         {content && (
           <div
             className="c-comment-item-content inner-html small-text"
@@ -59,7 +60,16 @@ function Component({ id, author, content, date }: CommentProps) {
           />
         )}
       </div>
-      <div className="c-comment-footer">{/* <span>Footer</span> */}</div>
+      <div className="c-comment-footer">
+        <Button
+          className="border border-slate-300 px-2 py-1 text-xs font-bold text-slate-700"
+          icon={
+            <Icon name={IconNames.reply} className="text-sm !text-slate-700" />
+          }
+        >
+          Reply
+        </Button>
+      </div>
     </div>
   );
 }

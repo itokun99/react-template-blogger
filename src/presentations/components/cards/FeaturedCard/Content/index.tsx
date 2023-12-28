@@ -61,6 +61,7 @@ function Component({
         <Button
           url={url}
           iconAlign="end"
+          className="bg-sky-600 px-4 py-2 text-sm font-bold text-white"
           icon={<FiArrowRight className="text-lg !text-white" />}
         >
           Read More
