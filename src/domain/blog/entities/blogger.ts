@@ -115,4 +115,5 @@ export interface CommentItem {
   inReplyTo?: {
     id: string;
   };
+  replies?: CommentItem[];
 }

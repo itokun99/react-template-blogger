@@ -1,34 +1,37 @@
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
-import { Comment, CommentForm } from '@components';
+import { Comment } from '@components';
 
 import { useComments, usePostDetail, usePostDetailParams } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
+import { useIntersect } from '@src/presentations/hooks/useIntersect';
 
 function Component() {
-  const {} = useInView({
-    triggerOnce: true,
-    delay: 500,
-    initialInView: false,
-    threshold: [0, 0.25, 0.5, 0.75, 1]
-  });
-
+  const { ref, inView } = useIntersect();
   const { id } = usePostDetailParams();
   const queryDetail = usePostDetail({ id, byPath: true });
-  const query = useComments({ postId: queryDetail.data?.id || '' });
+  const query = useComments({
+    postId: queryDetail.data?.id as string,
+    enabled: inView
+  });
   const items = query.data?.items || [];
   const totalComments = queryDetail.data?.replies?.totalItems || 0;
 
   function renderTop() {
     return (
       <div className="mb-4">
-        <p className="text-lg font-bold text-slate-700">{`Total Comments (${totalComments})`}</p>
+        <p className="text-lg font-bold text-slate-700">
+          {!totalComments
+            ? 'No Comment'
+            : totalComments === 1
+            ? '1 Comment'
+            : `${totalComments} Comments`}
+        </p>
       </div>
     );
   }
 
   function renderItems() {
-    if (query.isLoading) {
+    if (query.isLoading || !inView) {
       return null;
     }
 
@@ -58,7 +61,7 @@ function Component() {
   }
 
   return (
-    <div className="px-6 py-6">
+    <div ref={ref} className="px-6 pb-6">
       {renderTop()}
       {renderItems()}
       {renderBottom()}

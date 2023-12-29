@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AuthorCard, Button, Icon, Menu } from '@components';
 import DOMPurify from 'dompurify';
 import { IconNames } from '@general-types';
@@ -14,10 +14,6 @@ interface CommentProps {
 }
 
 function Component({ id, author, content, date }: CommentProps) {
-  function onClickReply() {
-    alert('ready to reply message');
-  }
-
   return (
     <div id={id} className="c-comment mb-6 border border-slate-300 p-4">
       <div className="c-comment-header mb-4 flex justify-between">
@@ -62,9 +58,12 @@ function Component({ id, author, content, date }: CommentProps) {
       </div>
       <div className="c-comment-footer">
         <Button
-          className="border border-slate-300 px-2 py-1 text-xs font-bold text-slate-700"
+          className="group/cta text-xs text-slate-700 hover:text-sky-600"
           icon={
-            <Icon name={IconNames.reply} className="text-sm !text-slate-700" />
+            <Icon
+              name={IconNames.reply}
+              className="text-sm !text-slate-700 group-hover/cta:!text-sky-600"
+            />
           }
         >
           Reply
