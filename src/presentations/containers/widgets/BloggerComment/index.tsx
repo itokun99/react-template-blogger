@@ -47,6 +47,7 @@ function Component() {
               author={{ name: author.title, image: author.image }}
               content={comment.content}
               date={formatDate(comment.published, 'Commented on MMM DD, YYYY')}
+              replies={comment.replies}
             />
           );
         })}

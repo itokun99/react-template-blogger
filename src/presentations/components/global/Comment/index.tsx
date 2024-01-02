@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { AuthorCard, Button, Icon, Menu } from '@components';
 import DOMPurify from 'dompurify';
 import { IconNames } from '@general-types';
+import { CommentItem } from '@blog';
+import { createAuthorDataFromPost, formatDate } from '@utils';
+import clsx from 'clsx';
 
 interface CommentProps {
   id: string;
@@ -11,11 +14,55 @@ interface CommentProps {
   };
   content?: string;
   date: string;
+  replies?: CommentItem[];
+  reply?: boolean;
 }
 
-function Component({ id, author, content, date }: CommentProps) {
+function Component({
+  id,
+  author,
+  content,
+  date,
+  replies,
+  reply
+}: CommentProps) {
+  const wrapperClasses = useMemo(
+    () =>
+      clsx(
+        'c-comment',
+        'group/comment mb-6 border border-slate-300 p-4',
+        reply ? 'border-0' : ''
+      ),
+    [reply]
+  );
+
+  const renderReplies = () => {
+    if (!replies || replies.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="c-comment-replies">
+        {replies?.map(comment => {
+          const author = createAuthorDataFromPost(comment.author);
+          return (
+            <Comment
+              reply
+              key={comment.id}
+              id={comment.id}
+              author={{ name: author.title, image: author.image }}
+              content={comment.content}
+              date={formatDate(comment.published, 'Commented on MMM DD, YYYY')}
+              replies={comment.replies}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
-    <div id={id} className="c-comment mb-6 border border-slate-300 p-4">
+    <div id={id} className={wrapperClasses}>
       <div className="c-comment-header mb-4 flex justify-between">
         <div className="c-comment-author">
           <AuthorCard
@@ -69,6 +116,7 @@ function Component({ id, author, content, date }: CommentProps) {
           Reply
         </Button>
       </div>
+      {renderReplies()}
     </div>
   );
 }
