@@ -1,4 +1,4 @@
-import React, { memo, useState, Fragment } from 'react';
+import React, { memo, Fragment } from 'react';
 import { Dialog as BaseDialog } from '@headlessui/react';
 import { Transition } from '@headlessui/react';
 
@@ -12,14 +12,11 @@ interface DialogProps {
 
 function Component({
   title,
-  description,
-  text,
   visible = false,
   onClose = () => {}
 }: DialogProps) {
   return (
     <>
-
       <Transition appear show={visible} as={Fragment}>
         <BaseDialog as="div" className="relative z-10" onClose={onClose}>
           <Transition.Child
@@ -79,6 +76,3 @@ function Component({
 }
 
 export const Dialog = memo(Component);
-
-
-export * from './hooks';

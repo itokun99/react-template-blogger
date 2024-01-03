@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useMemo, Fragment } from 'react';
 import clsx from 'clsx';
 import { Menu as BaseMenu, Transition } from '@headlessui/react';
 import { MenuItem } from './components';
+import { IconNames } from '@general-types';
 
 interface MenuItem {
   id: number;
@@ -10,7 +11,7 @@ interface MenuItem {
   component?: React.ReactNode;
   onClick?: () => void;
   url?: string;
-  icon?: string;
+  icon?: IconNames;
 }
 
 interface MenuProps extends PropsWithChildren {

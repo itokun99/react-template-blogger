@@ -11,15 +11,18 @@ export default function usePostDetailParams() {
 
   const isBlogger = getConfig().isBlogger;
 
-  const id = useMemo(() => {
-    if (year && month && title) {
-      return `/${year}/${month}/${title}${isBlogger ? '' : '.html'}`;
-    }
+  const d = useMemo(() => {
+    const _id =
+      year && month && title
+        ? `/${year}/${month}/${title}${isBlogger ? '' : '.html'}`
+        : '';
+    const url = window.location.origin + _id;
 
-    return '';
+    return {
+      id: _id,
+      url
+    };
   }, [year, month, title, isBlogger]);
 
-  return {
-    id
-  };
+  return d;
 }

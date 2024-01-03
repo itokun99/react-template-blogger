@@ -9,7 +9,8 @@ import {
   RelatedPostProps,
   BloggerComment,
   BloggerPostDetail,
-  BloggerCommentProps
+  DisqusComment
+  // BloggerCommentProps
 } from '@containers';
 
 interface SiteWidgetProps {
@@ -43,6 +44,8 @@ function Component({ type, show, title, data }: SiteWidgetProps) {
       return <BloggerComment />;
     case 'blogger-post-detail':
       return <BloggerPostDetail />;
+    case 'disqus-comment':
+      return <DisqusComment />;
     default:
       return null;
   }

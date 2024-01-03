@@ -5,8 +5,8 @@
     "logo": "https://avatars.githubusercontent.com/u/45938169?v=4"
   },
   "blogger": {
-    "blogId": "7496508518212181894",
-    "blogUrl": "https://vinkanime.blogspot.com"
+    "blogId": "3190947245348881579",
+    "blogUrl": "https://codepelajar.blogspot.com"
   },
   "google": {
     "apiKey": "AIzaSyB2MpzH-Gq6fnWuUnoI2PH2sPMTkGIQ9b0",
@@ -23,7 +23,7 @@
     }
   },
   "disqus": {
-    "username": "codepelajar"
+    "username": "itodev"
   },
   "addThis": {
     "id": "5dd79989c6588238"
@@ -230,8 +230,8 @@
         },
         {
           "id": 2,
-          "title": "Blogger Comment",
-          "type": "blogger-comment",
+          "title": "Comment",
+          "type": "disqus-comment",
           "show": true
         }
       ]

@@ -2,11 +2,12 @@ import React, { useMemo, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { Icon } from '@components';
+import { IconNames } from '@general-types';
 
 interface MenuItemProps extends PropsWithChildren {
   title?: string;
   subtitle?: string;
-  icon?: string;
+  icon?: IconNames;
   url?: string;
   onClick?: () => void;
 }
@@ -28,7 +29,8 @@ function Component({
     []
   );
   const titleClasses = useMemo(
-    () => clsx('c-menu-item-title', 'text-sm text-slate-700', { 'mb-1': subtitle }),
+    () =>
+      clsx('c-menu-item-title', 'text-sm text-slate-700', { 'mb-1': subtitle }),
     [subtitle]
   );
   const subtitleClasses = useMemo(
@@ -37,7 +39,7 @@ function Component({
   );
 
   const iconClasses = useMemo(
-    () => clsx('c-menu-item-icon', '!text-slate-700 text-[20px]'),
+    () => clsx('c-menu-item-icon', 'text-[20px] !text-slate-700'),
     []
   );
 
@@ -50,7 +52,8 @@ function Component({
   }
 
   function renderIcon() {
-    return <Icon name={icon || ''} className={iconClasses} />;
+    if (!icon) return null;
+    return <Icon name={icon} className={iconClasses} />;
   }
 
   function renderContent() {
@@ -95,7 +98,11 @@ function Component({
     );
   }
 
-  return <li className="relative hover:bg-slate-100">{url ? renderLink() : renderButton()}</li>;
+  return (
+    <li className="relative hover:bg-slate-100">
+      {url ? renderLink() : renderButton()}
+    </li>
+  );
 }
 
 export const MenuItem = React.memo(Component);

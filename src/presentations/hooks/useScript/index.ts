@@ -62,6 +62,7 @@ export default function useScript(
       scriptNode = document.createElement('script');
       scriptNode.src = src;
       scriptNode.async = true;
+      scriptNode.setAttribute('data-timestamp', `${+new Date()}`);
       scriptNode.setAttribute('data-status', 'loading');
       document.body.appendChild(scriptNode);
 
