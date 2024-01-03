@@ -1,6 +1,5 @@
 import { Posts, AppConfig, Comments } from '@domain';
 import { removeDomainAndSubdomain, removeHtmlTags, getConfig } from '@utils';
-import { filter } from 'lodash';
 
 export function transformPostLabel(labels: Posts['items'][0]['labels']) {
   if (labels && labels.length > 0) {
@@ -106,27 +105,27 @@ export function transformComments(
   authors: AppConfig['author']
 ) {
   if (data?.items?.length > 0) {
-    const tempIds: string[] = [];
+    // const tempIds: string[] = [];
 
     data.items = data.items.map(com => {
-      com.replies = com.replies || [];
-
-      // find replies
-      com.replies = data.items.filter(d => {
-        if (
-          d.inReplyTo?.id === com.id &&
-          !com.replies?.some(v => v.id === com.id)
-        ) {
-          tempIds.push(d.id);
-          return true;
-        }
-        return false;
-      });
+      // com.replies = com.replies || [];
+      //
+      // // find replies
+      // com.replies = data.items.filter(d => {
+      //   if (
+      //     d.inReplyTo?.id === com.id &&
+      //     !com.replies?.some(v => v.id === com.id)
+      //   ) {
+      //     tempIds.push(d.id);
+      //     return true;
+      //   }
+      //   return false;
+      // });
       return transformComment(com, authors);
     });
 
     // remove duplicate item from replies
-    data.items = data.items.filter(com => !tempIds.includes(com.id));
+    // data.items = data.items.filter(com => !tempIds.includes(com.id));
   }
 
   return data;
