@@ -105,13 +105,27 @@ export function transformComments(
   authors: AppConfig['author']
 ) {
   if (data?.items?.length > 0) {
-    data.items = data.items.map(post => {
-      if (post.inReplyTo) {
-        // const parentComment = data?.items.filter(item => item?.id === )
-      }
+    // const tempIds: string[] = [];
 
-      return transformComment(post, authors);
+    data.items = data.items.map(com => {
+      // com.replies = com.replies || [];
+      //
+      // // find replies
+      // com.replies = data.items.filter(d => {
+      //   if (
+      //     d.inReplyTo?.id === com.id &&
+      //     !com.replies?.some(v => v.id === com.id)
+      //   ) {
+      //     tempIds.push(d.id);
+      //     return true;
+      //   }
+      //   return false;
+      // });
+      return transformComment(com, authors);
     });
+
+    // remove duplicate item from replies
+    // data.items = data.items.filter(com => !tempIds.includes(com.id));
   }
 
   return data;

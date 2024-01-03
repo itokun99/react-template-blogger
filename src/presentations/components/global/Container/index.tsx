@@ -6,13 +6,16 @@ interface ContainerProps extends PropsWithChildren {
   className?: string;
 }
 
-function Container({ className, children }: ContainerProps) {
+const Container = React.forwardRef<HTMLDivElement, ContainerProps>(function (
+  { className, children },
+  ref
+) {
   return (
-    <div className={clsx('container mx-auto max-w-5xl', className)}>
+    <div ref={ref} className={clsx('container mx-auto max-w-5xl', className)}>
       {children}
     </div>
   );
-}
+});
 
 const ContainerMemo = React.memo(Container);
 

@@ -40,7 +40,7 @@ function Component({ type, show, title, data }: SiteWidgetProps) {
     case 'related-post':
       return <RelatedPost title={title} {...(data as RelatedPostProps)} />;
     case 'blogger-comment':
-      return <BloggerComment {...(data as BloggerCommentProps)} />;
+      return <BloggerComment />;
     case 'blogger-post-detail':
       return <BloggerPostDetail />;
     default:

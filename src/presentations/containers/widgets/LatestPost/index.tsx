@@ -1,13 +1,15 @@
 import React from 'react';
 import { BasePostList, Button, Container } from '@components';
 import { useLatestPosts } from '@hooks';
+import { useIntersect } from '@src/presentations/hooks/useIntersect';
 
 export interface LatestPostProps {
   title?: string | React.ReactNode;
 }
 
 function Component({ title }: LatestPostProps) {
-  const query = useLatestPosts();
+  const { ref, inView } = useIntersect();
+  const query = useLatestPosts({ enabled: inView });
 
   const renderButton = () => {
     return (
@@ -28,10 +30,10 @@ function Component({ title }: LatestPostProps) {
   };
 
   return (
-    <div className="latest-post">
+    <div ref={ref} className="latest-post">
       <BasePostList
         title={title}
-        loading={query.isLoading}
+        loading={query.isLoading || !inView}
         items={query.items}
       />
       {renderButton()}

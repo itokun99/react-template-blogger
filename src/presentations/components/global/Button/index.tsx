@@ -34,17 +34,13 @@ function Component({
   iconAlign = 'start'
 }: ButtonProps) {
   const buttonClasses = useMemo(() => {
-    return clsx(
-      'c-button',
-      'bg-sky-600 px-4 py-2 text-sm font-bold text-white',
-      className
-    );
+    return clsx('c-button', '', className);
   }, [className]);
 
   function renderContent() {
     if (icon) {
       return (
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           {iconAlign === 'start' && <div>{icon}</div>}
           <div className="flex-1">{children}</div>
           {iconAlign === 'end' && <div>{icon}</div>}

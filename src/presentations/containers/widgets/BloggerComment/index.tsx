@@ -1,28 +1,42 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
-import { Comment, CommentForm, Dialog, useDialog } from '@components';
+import { Comment } from '@components';
+
 import { useComments, usePostDetail, usePostDetailParams } from '@hooks';
 import { createAuthorDataFromPost, formatDate } from '@utils';
+import { useIntersect } from '@src/presentations/hooks/useIntersect';
 
 function Component() {
+  const { ref, inView } = useIntersect();
   const { id } = usePostDetailParams();
-  const dialog = useDialog();
   const queryDetail = usePostDetail({ id, byPath: true });
-  const query = useComments({ postId: queryDetail.data?.id || '' });
+  const query = useComments({
+    postId: queryDetail.data?.id as string,
+    enabled: inView
+  });
   const items = query.data?.items || [];
   const totalComments = queryDetail.data?.replies?.totalItems || 0;
 
+  function renderTop() {
+    return (
+      <div className="mb-4">
+        <p className="text-lg font-bold text-slate-700">
+          {!totalComments
+            ? 'No Comment'
+            : totalComments === 1
+            ? '1 Comment'
+            : `${totalComments} Comments`}
+        </p>
+      </div>
+    );
+  }
+
   function renderItems() {
-    if (query.isLoading) {
+    if (query.isLoading || !inView) {
       return null;
     }
 
     return (
       <>
-        <div className="mb-4">
-          <p className="text-lg font-bold text-slate-700">{`Total Comments (${totalComments})`}</p>
-        </div>
-
         {items.map(comment => {
           const author = createAuthorDataFromPost(comment.author);
 
@@ -33,22 +47,27 @@ function Component() {
               author={{ name: author.title, image: author.image }}
               content={comment.content}
               date={formatDate(comment.published, 'Commented on MMM DD, YYYY')}
+              replies={comment.replies}
             />
           );
         })}
-        {createPortal(
-          <Dialog
-            visible={dialog.visible}
-            title={dialog.content.title}
-            description={dialog.content.description}
-          />,
-          document.getElementById('root') || document.body
-        )}
       </>
     );
   }
 
-  return <div className="px-6 py-6">{renderItems()}</div>;
+  function renderBottom() {
+    // return <CommentForm />;
+
+    return null;
+  }
+
+  return (
+    <div ref={ref} className="px-6 pb-6">
+      {renderTop()}
+      {renderItems()}
+      {renderBottom()}
+    </div>
+  );
 }
 
 export const BloggerComment = React.memo(Component);

@@ -15,3 +15,4 @@ export * from './Menu';
 export * from './Icon';
 export * from './CommentForm';
 export * from './Dialog';
+export * from './BaseEditor';

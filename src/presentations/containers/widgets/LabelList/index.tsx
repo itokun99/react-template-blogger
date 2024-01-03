@@ -1,16 +1,18 @@
 import React from 'react';
 import { Container, SectionTitle, Hashtag } from '@components';
 import { useLabelList } from '@hooks';
+import { useIntersect } from '@src/presentations/hooks/useIntersect';
 
 export interface LabelListProps {
   title?: string | React.ReactNode;
 }
 
 function Component({ title }: LabelListProps) {
+  const { ref, inView } = useIntersect();
   const query = useLabelList();
 
   const renderItems = () => {
-    if (query.isLoading) {
+    if (query.isLoading || !inView) {
       return (
         <div>
           <div className="mb-1 mr-2 inline-block h-6 w-24 rounded-full bg-slate-300"></div>
@@ -42,7 +44,7 @@ function Component({ title }: LabelListProps) {
   };
 
   return (
-    <Container className="px-0 sm:px-6">
+    <Container ref={ref} className="px-0 sm:px-6">
       <SectionTitle title={title || 'Label List'} />
       <div className="px-6 sm:px-0">{renderContent()}</div>
     </Container>

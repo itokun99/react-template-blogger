@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import clsx from 'clsx';
-import { useInView } from 'react-intersection-observer';
+// import { useInView } from 'react-intersection-observer';
 import { useBlog } from '@hooks';
+import { useIntersect } from '@src/presentations/hooks/useIntersect';
 
 interface ImageProps {
   src?: string;
@@ -22,12 +23,7 @@ function Component({
 }: ImageProps) {
   const { config } = useBlog();
 
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    delay: 500,
-    initialInView: false,
-    threshold: [0, 0.25, 0.5, 0.75, 1]
-  });
+  const { ref, inView } = useIntersect();
 
   const wrapperClasses = useMemo(
     () => clsx('c-image', 'relative bg-slate-300', className),

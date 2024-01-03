@@ -1,30 +1,24 @@
 import React, { useMemo } from 'react';
 import clsx from 'clsx';
-import { FiMenu, FiSearch, FiLink } from 'react-icons/fi';
-
-enum IconNameEnum {
-  search = 'search',
-  menu = 'menu',
-  link = 'link'
-}
-
-type IconName = keyof typeof IconNameEnum;
+import { FiMenu, FiSearch, FiLink, FiCornerDownRight } from 'react-icons/fi';
+import { IconNames } from '@general-types';
 
 interface IconData {
-  name: IconName;
+  name: IconNames;
   icon: React.ElementType | string | null;
   type: 'component' | 'image';
 }
 
 const ICONS: IconData[] = [
-  { name: 'search', icon: FiSearch, type: 'component' },
-  { name: 'menu', icon: FiMenu, type: 'component' },
-  { name: 'link', icon: FiLink, type: 'component' }
-]
+  { name: IconNames.search, icon: FiSearch, type: 'component' },
+  { name: IconNames.menu, icon: FiMenu, type: 'component' },
+  { name: IconNames.link, icon: FiLink, type: 'component' },
+  { name: IconNames.reply, icon: FiCornerDownRight, type: 'component' }
+];
 
 interface IconProps {
-  name: string;
-  className?: string
+  name: IconNames;
+  className?: string;
 }
 
 function Component({ name, className }: IconProps) {
@@ -35,7 +29,11 @@ function Component({ name, className }: IconProps) {
 
     if (!source || !source.icon) return null;
 
-    if (source.type === 'component' && typeof source.icon !== 'string' && source.icon) {
+    if (
+      source.type === 'component' &&
+      typeof source.icon !== 'string' &&
+      source.icon
+    ) {
       const Comp = source.icon;
 
       return <Comp className={classes} />;
