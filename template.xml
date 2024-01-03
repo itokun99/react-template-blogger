@@ -141,8 +141,8 @@
         <b:includable id="feeds"/>
       </b:defaultmarkup>
     </b:defaultmarkups>
-    <script type="text/" crossorigin src="https://raw.githubusercontent.com/itokun99/react-template-blogger/main/dist/assets/index-0c7cea06.js"></script>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/itokun99/react-template-blogger/main/dist/assets/index-bb6ea559.css">
+    <script type="text/" crossorigin src="https://raw.githack.com/itokun99/react-template-blogger/main/dist/assets/index.js"></script>
+    <link rel="stylesheet" href="https://raw.githack.com/itokun99/react-template-blogger/main/dist/assets/index.css">
     </head>
     <body>
       <b:if cond="data:view.isLayoutMode">
